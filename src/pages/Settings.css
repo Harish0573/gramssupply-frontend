@@ -1,0 +1,20 @@
+.st-page{width:min(1200px,calc(100% - 48px));margin:0 auto;padding:36px 0 70px;color:#2a1410;font-size:17px}
+.st-page header p{color:#7a1a2e;font-weight:800;letter-spacing:1.5px;font-size:14px}.st-page h1{font-family:"Cormorant Garamond","Noto Serif Devanagari",Georgia,serif;font-size:44px;color:#3b0b17;margin-bottom:24px}
+.st-note{position:sticky;top:150px;z-index:5;margin-bottom:16px;padding:12px 20px;border-radius:12px;background:#3b0b17;color:#e0b45a;font-weight:700}
+.st-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.st-card{padding:26px;border-radius:18px;background:#fff;border:1px solid #e3d3b3;box-shadow:0 8px 22px #3b0b1714;display:flex;flex-direction:column;gap:14px}
+.st-card h2{display:flex;align-items:center;gap:10px;font-size:21px;color:#3b0b17}.st-card h2 svg{color:#7a1a2e}.st-hint{color:#7d6650;font-size:15px}
+.st-seg{display:flex;gap:8px;flex-wrap:wrap}.st-seg button{height:46px;padding:0 22px;border-radius:30px;border:2px solid #e3d3b3;background:#fff;font-size:16px;font-weight:700;color:#2a1410;cursor:pointer}
+.st-seg button.on,.st-seg button:hover{background:#7a1a2e;border-color:#7a1a2e;color:#fff}
+.st-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;border-top:1px solid #eadcc0;cursor:pointer}
+.st-row b{display:block;font-size:17px}.st-row small{color:#7d6650;font-size:14px}
+.st-row input{position:absolute;opacity:0}.st-row i{flex:none;width:52px;height:30px;border-radius:30px;background:#d9c9a8;position:relative;transition:.2s}
+.st-row i:after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:.2s;box-shadow:0 2px 5px #0003}
+.st-row input:checked+i{background:#7a1a2e}.st-row input:checked+i:after{left:25px}.st-row input:focus-visible+i{outline:3px solid #c9a24d}
+.st-field{display:flex;flex-direction:column;gap:8px;font-weight:700}.st-field span{display:flex;gap:10px}
+.st-field input{flex:1;height:48px;border:2px solid #e3d3b3;border-radius:12px;padding:0 14px;font-size:17px}.st-field input:focus{outline:0;border-color:#7a1a2e}
+.st-field button,.st-btns button{height:48px;padding:0 22px;border:2px solid #7a1a2e;border-radius:12px;background:#7a1a2e;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+.st-btns{display:flex;gap:10px;flex-wrap:wrap}.st-btns button{background:#fff;color:#7a1a2e}.st-btns button:hover{background:#7a1a2e;color:#fff}
+.st-link,.st-links a{color:#7a1a2e;font-weight:800;text-decoration:none}.st-link:hover,.st-links a:hover{text-decoration:underline}
+.st-links{display:flex;flex-wrap:wrap;gap:12px 26px}
+@media(max-width:800px){.st-grid{grid-template-columns:1fr}.st-page{width:calc(100% - 24px)}}

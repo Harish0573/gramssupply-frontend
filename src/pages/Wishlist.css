@@ -1,0 +1,17 @@
+.wl-page{width:min(1400px,calc(100% - 48px));margin:0 auto;padding:36px 0 70px;color:#2a1410;font-size:17px}
+.wl-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px}
+.wl-head p{color:#7a1a2e;font-weight:800;letter-spacing:1.5px;font-size:14px}
+.wl-head h1{font-family:"Cormorant Garamond","Noto Serif Devanagari",Georgia,serif;font-size:44px;color:#3b0b17}
+.wl-head span{padding:8px 18px;border-radius:30px;background:#3b0b17;color:#e0b45a;font-weight:800}
+.wl-msg{margin-bottom:18px;padding:14px 20px;border-radius:12px;background:#3b0b17;color:#fff}.wl-msg a{color:#e0b45a;font-weight:800}
+.wl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.wl-card{background:#fff;border:1px solid #e3d3b3;border-radius:16px;overflow:hidden;box-shadow:0 8px 22px #3b0b1718;transition:.2s}.wl-card:hover{transform:translateY(-5px)}
+.wl-img{display:block;height:230px;background:#f7efe0}.wl-img img{width:100%;height:100%;object-fit:cover}
+.wl-body{padding:18px;display:flex;flex-direction:column;gap:8px}.wl-body small{color:#8a6f55;font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:.6px}
+.wl-name{font-size:19px;font-weight:700;color:#2a1410;text-decoration:none;min-height:50px}.wl-name:hover{color:#7a1a2e}.wl-body strong{font-size:23px}
+.wl-actions{display:flex;gap:10px;margin-top:6px}
+.wl-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 20px;border-radius:12px;font-weight:800;font-size:16px;text-decoration:none;cursor:pointer;border:2px solid #7a1a2e}
+.wl-btn.solid{background:#7a1a2e;color:#fff;flex:1}.wl-btn.solid:hover{background:#5c1325}.wl-btn.line{background:#fff;color:#7a1a2e;padding:0 14px}.wl-btn.line:hover{background:#7a1a2e;color:#fff}
+.wl-empty{display:grid;justify-items:center;gap:12px;padding:70px 20px;border-radius:20px;background:#fbf3e4;border:2px dashed #c9a24d;text-align:center;color:#7a1a2e}
+.wl-empty h2{color:#3b0b17;font-size:28px}.wl-empty p{color:#7d6650}.wl-empty .wl-btn{margin-top:8px}
+@media(max-width:1100px){.wl-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.wl-grid{grid-template-columns:1fr}.wl-page{width:calc(100% - 24px)}}

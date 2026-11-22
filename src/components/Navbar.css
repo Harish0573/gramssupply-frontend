@@ -1,0 +1,66 @@
+/* Diwali marketplace header — plum, pink and marigold */
+.site-header{position:sticky;top:0;z-index:100;background:#fffaf0;box-shadow:0 2px 14px #3b0b171f}
+.header-container{width:min(1560px,calc(100% - 48px));margin:0 auto}
+.sale-strip{background:linear-gradient(90deg,#3b0b17,#6f1a2d 50%,#3b0b17);color:#ecd08a;font-size:15px}
+.sale-strip-inner{min-height:42px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.sale-strip b{color:#c9a24d;font-weight:800}
+.sale-strip em{font-style:normal;font-weight:800;background:#c9a24d;color:#3b0b17;padding:4px 14px;border-radius:20px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.main-header-inner{min-height:88px;display:flex;align-items:center;gap:32px}
+.brand-lockup{display:flex;align-items:center;gap:12px;text-decoration:none;color:#3b0b17;flex:none}
+.brand-mark{width:54px;height:54px;border-radius:14px;background:linear-gradient(145deg,#c9a24d,#7a1a2e);color:#3b0b17;display:grid;place-items:center;font-weight:800;font-size:34px;box-shadow:0 5px 14px #7a1a2e44}
+.brand-copy{display:flex;flex-direction:column;line-height:1.05}
+.brand-copy strong{font-weight:800;letter-spacing:-.5px;font-size:30px;letter-spacing:-.3px}
+.brand-copy strong span{color:#7a1a2e}
+.brand-copy small{margin-top:4px;font-size:12px;color:#8a6f55;font-weight:600}
+.header-search{display:flex;align-items:center;flex:1;max-width:760px;height:56px;gap:12px;padding:0 20px;border:2px solid transparent;border-radius:14px;background:#f7efe0;color:#7d6650;transition:.2s}
+.header-search input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;color:#2a1410;font-size:17px}
+.header-search input::placeholder{color:#8a6f55}
+.header-search:focus-within{background:#fff;border-color:#7a1a2e;box-shadow:0 0 0 4px #7a1a2e1a}
+.header-actions{display:flex;align-items:center;gap:26px;margin-left:auto}
+.header-link{display:flex;align-items:center;gap:7px;border:0;background:none;color:#2a1410;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap}
+.header-link:hover{color:#7a1a2e}
+.location-btn{padding:9px 14px;border-radius:12px;background:#f6e6c3;color:#5c1325}
+.location-btn>svg:first-child{color:#7a1a2e}
+.location-btn span{display:flex;flex-direction:column;line-height:1.25;text-align:left;font-size:13px}
+.cart-link{padding:10px 18px;border-radius:12px;background:#7a1a2e;color:#fff}
+.cart-link:hover{background:#5d1224;color:#fff}
+.cart-icon-wrap{position:relative;display:grid;place-items:center}
+.cart-icon-wrap i{position:absolute;top:-12px;right:-14px;min-width:21px;height:21px;padding:0 5px;border-radius:20px;background:#c9a24d;color:#3b0b17;font-size:12px;font-style:normal;font-weight:800;display:grid;place-items:center;border:2px solid #fff}
+.dropdown{position:relative}
+.dropdown-panel{position:absolute;top:calc(100% + 14px);right:0;min-width:240px;padding:10px;border:1px solid #e8d9bc;border-radius:16px;background:#fff;box-shadow:0 18px 40px #3b0b172e}
+.dropdown.location .dropdown-panel{left:0;right:auto}
+.dropdown-panel a,.dropdown-panel>button{display:flex;align-items:center;gap:10px;width:100%;padding:12px;border:0;border-radius:10px;background:transparent;color:#4a3328;text-decoration:none;text-align:left;font-size:15px;cursor:pointer}
+.dropdown-panel a:hover,.dropdown-panel>button:hover{background:#f6ead2;color:#7a1a2e}
+.panel-head{padding:12px;color:#2a1410;font-size:15px;font-weight:800}
+.panel-head small{display:block;margin-top:4px;color:#8a6f55;font-weight:500}
+.panel-signup{display:inline!important;padding:0!important;color:#7a1a2e!important}
+.pin-panel{display:flex;flex-direction:column;gap:10px}
+.pin-panel label{font-size:14px;font-weight:700;padding:4px}
+.pin-panel input{height:44px;border:1.5px solid #e0cfae;border-radius:10px;padding:0 12px;font-size:16px}
+.pin-panel em{color:#5d1224;font-size:13px}
+.pin-panel button{height:44px;border:0;border-radius:10px;background:#7a1a2e;color:#fff;font-weight:800;font-size:15px}
+.category-row{border-top:1px solid #eadcc0;background:#fff}
+.category-row-inner{min-height:56px;display:flex;align-items:stretch;gap:6px;overflow-x:auto;scrollbar-width:none}
+.category-row-inner::-webkit-scrollbar{display:none}
+.cat-item{position:relative;display:flex;align-items:center;gap:8px;padding:0 18px;border-bottom:4px solid transparent;color:#2a1410;text-decoration:none;font-size:15px;font-weight:800;letter-spacing:.2px;white-space:nowrap;transition:.15s}
+.cat-item svg{display:none}
+.cat-item:hover,.cat-item.active{color:#7a1a2e;border-bottom-color:#7a1a2e}
+.cat-item.sale-link{color:#7a1a2e;margin-right:8px}
+.cat-item.sale-link i{font-style:normal;font-size:11px;font-weight:900;background:#c9a24d;color:#3b0b17;padding:2px 7px;border-radius:5px}
+@media(max-width:1100px){.location-btn,.header-actions .dropdown:nth-child(3){display:none}.main-header-inner{gap:18px}.header-actions{gap:14px}}
+@media(max-width:720px){.header-container{width:calc(100% - 24px)}.sale-strip-inner span{display:none}.sale-strip-inner{justify-content:center;min-height:36px}.main-header-inner{flex-wrap:wrap;min-height:0;padding:12px 0;gap:10px}.brand-mark{width:44px;height:44px;font-size:28px}.brand-copy strong{font-size:24px}.header-search{order:3;flex-basis:100%;max-width:none;height:48px}.header-link span{display:none}.cart-link{padding:10px 12px}.dropdown-panel{right:0}}
+
+.lang-toggle{display:inline-flex;padding:4px;border:1.5px solid #e3d3b3;border-radius:30px;background:#fff;cursor:pointer}
+.lang-toggle b{padding:6px 14px;border-radius:30px;font-size:14px;font-weight:800;color:#7d6650;transition:.2s}
+.lang-toggle b.on{background:#5c1325;color:#e0b45a}
+html[lang="mr"] .dv-hero h1{font-size:clamp(36px,3.4vw,58px);line-height:1.2}
+html[lang="mr"] .dv-home,html[lang="mr"] .site-header{line-height:1.5}
+
+.icon-link{position:relative;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;color:#2a1410;transition:.2s}
+.icon-link:hover{background:#f6ead2;color:#7a1a2e}
+.icon-link i{position:absolute;top:2px;right:0;min-width:20px;height:20px;padding:0 5px;border-radius:20px;background:#7a1a2e;color:#fff;font-size:12px;font-style:normal;font-weight:800;display:grid;place-items:center;border:2px solid #fffaf0}
+.header-actions{gap:12px}.main-header-inner{gap:22px}.header-search{max-width:none;min-width:260px}
+.location-btn{max-width:210px}.location-btn span{white-space:normal}
+@media(max-width:1400px){.location-btn{display:none}}
+
+.cart-icon-wrap{margin-right:8px}.cart-icon-wrap i{top:-11px;right:-12px}

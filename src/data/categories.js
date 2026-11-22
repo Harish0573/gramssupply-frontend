@@ -1,0 +1,88 @@
+import {
+  Trash2,
+  Lightbulb,
+  Camera,
+  Monitor,
+  Droplets,
+  Armchair,
+  Dumbbell,
+  Construction,
+  Zap,
+} from "lucide-react";
+
+const categories = [
+  {
+    id: 1,
+    name: "Cleaning & Sanitation",
+    description: "Dustbins, trolleys, brooms and cleaning products",
+    icon: Trash2,
+    image: "/categories/cleaning.jpg",
+    focus: 45,
+  },
+  {
+    id: 2,
+    name: "Street & Outdoor Lighting",
+    description: "LED street lights and solar lighting",
+    icon: Lightbulb,
+    image: "/categories/lighting.jpg",
+    focus: 62,
+  },
+  {
+    id: 3,
+    name: "CCTV & Security",
+    description: "CCTV cameras and security systems",
+    icon: Camera,
+    image: "/categories/cctv.jpg",
+    focus: 55,
+  },
+  {
+    id: 4,
+    name: "Computers & Office Technology",
+    description: "Computers, printers and office equipment",
+    icon: Monitor,
+    image: "/categories/computers.jpg",
+    focus: 50,
+  },
+  {
+    id: 5,
+    name: "Water Systems",
+    description: "RO plants, water purifiers and water tanks",
+    icon: Droplets,
+    image: "/categories/water.jpg",
+    focus: 55,
+  },
+  {
+    id: 6,
+    name: "Furniture",
+    description: "Office chairs, tables and cupboards",
+    icon: Armchair,
+    image: "/categories/furniture.jpg",
+    focus: 40,
+  },
+  {
+    id: 7,
+    name: "Playground & Open Gym",
+    description: "Slides, swings and outdoor gym equipment",
+    icon: Dumbbell,
+    image: "/categories/playground.jpg",
+    focus: 40,
+  },
+  {
+    id: 8,
+    name: "Village Infrastructure",
+    description: "Railings, drainage covers and signboards",
+    icon: Construction,
+    image: "/categories/infrastructure.jpg",
+    focus: 55,
+  },
+  {
+    id: 9,
+    name: "Power, Solar & Safety",
+    description: "Generators, solar panels and safety equipment",
+    icon: Zap,
+    image: "/categories/safety.jpg",
+    focus: 55,
+  },
+];
+
+export default categories;

@@ -1,0 +1,11 @@
+.gf{margin-top:60px;background:linear-gradient(120deg,#240509,#4a0e1c 70%);color:#e6cfa6;font-size:16px}
+.gf-inner{width:min(1400px,calc(100% - 48px));margin:0 auto;padding:56px 0 36px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+.gf-brand strong{font-family:"Cormorant Garamond","Noto Serif Devanagari",Georgia,serif;font-size:38px;color:#fff;font-weight:700}.gf-brand strong span{color:#c9a24d}
+.gf-brand p{margin:10px 0 16px;max-width:360px;line-height:1.5}
+.gf-help{color:#e0b45a;font-weight:800;text-decoration:none}.gf-help:hover{text-decoration:underline}
+.gf nav{display:flex;flex-direction:column;gap:10px}
+.gf h4{margin:0 0 6px;color:#e0b45a;font-size:14px;letter-spacing:1.4px;text-transform:uppercase}
+.gf nav a{color:#f3e3c4;text-decoration:none;font-weight:500}.gf nav a:hover{color:#e0b45a;text-decoration:underline}
+.gf-bottom{border-top:1px solid #c9a24d33;padding:20px 24px;text-align:center;font-size:14px;color:#c9ad8a}
+@media(max-width:900px){.gf-inner{grid-template-columns:1fr 1fr}.gf-brand{grid-column:1/-1}}
+@media(max-width:520px){.gf-inner{grid-template-columns:1fr;width:calc(100% - 32px)}}

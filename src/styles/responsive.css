@@ -1,0 +1,235 @@
+/* ==========================================================
+   GramSupply: mobile and tablet responsive overrides
+   Loaded last from main.jsx, so these rules win over page CSS.
+   ========================================================== */
+
+/* ---------- global ---------- */
+html,
+body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- categories: sidebar becomes a horizontal scroll row (tablet and phone) ---------- */
+@media (max-width: 1000px) {
+  .dv-top {
+    display: block;
+  }
+
+  .dv-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 12px 14px;
+    margin: 0 0 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .dv-side::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dv-side h3 {
+    flex: none;
+    margin: 0 4px 0 0;
+    padding: 0;
+    font-size: 17px;
+    white-space: nowrap;
+  }
+
+  .dv-side a {
+    flex: none;
+    gap: 6px;
+    padding: 10px 16px;
+    border: 1px solid #e3d3b3;
+    border-radius: 30px;
+    background: #fff;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .dv-side a svg {
+    display: none;
+  }
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 700px) {
+  .dv-home {
+    width: calc(100% - 20px);
+    font-size: 15px;
+  }
+
+  /* hero */
+  .dv-hero {
+    min-height: auto;
+    margin-top: 16px;
+    border-radius: 14px;
+  }
+
+  .dv-hero-inner,
+  .dv-top .dv-hero-inner {
+    min-height: auto;
+    padding: 56px 18px 64px;
+  }
+
+  .dv-hero h1,
+  .dv-top .dv-hero h1 {
+    font-size: clamp(30px, 9vw, 42px);
+    line-height: 1.1;
+  }
+
+  .dv-hero p,
+  .dv-top .dv-hero p {
+    max-width: none;
+    font-size: 17px;
+  }
+
+  .dv-hero-cta {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dv-hero-cta a,
+  .dv-hero-cta button {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .dv-arch,
+  .dv-top .dv-arch {
+    width: min(70%, 220px);
+    margin: 16px auto 0;
+  }
+
+  .dv-dots {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* category tiles: 2 per row */
+  .dv-cat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .dv-cat {
+    height: 190px;
+    border-radius: 16px;
+  }
+
+  /* product shelf: cards are almost full width, swipe sideways */
+  .dv-shelf {
+    gap: 14px;
+    padding: 4px 2px 12px;
+  }
+
+  .dv-shelf .dv-card {
+    flex: 0 0 82vw;
+    max-width: 320px;
+  }
+
+  /* product grid, coupons and trust row: single column */
+  .dv-grid,
+  .dv-coupons,
+  .dv-trust {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .dv-trust {
+    padding: 20px;
+    margin: 36px 0;
+  }
+
+  .dv-duo {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 36px 0;
+  }
+
+  /* offer banner (flash sale block) */
+  .dv-flash {
+    margin: 36px -10px;
+    padding: 28px 14px 34px;
+    border-radius: 14px;
+  }
+
+  .dv-flash-head {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .dv-flash h2 {
+    font-size: 26px;
+  }
+
+  /* section headings */
+  .dv-section {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dv-title {
+    font-size: 26px;
+  }
+
+  /* tabs scroll sideways */
+  .dv-tabs button {
+    height: 44px;
+    padding: 0 18px;
+    font-size: 15px;
+  }
+
+  /* card text and buttons */
+  .dv-card-body {
+    padding: 14px 16px 18px;
+  }
+
+  .dv-name {
+    min-height: 0;
+    font-size: 17px;
+  }
+
+  .dv-btn {
+    padding: 0 14px;
+    font-size: 15px;
+  }
+
+  /* sticker or badge on top does not overlap the title */
+  .dv-stickwrap {
+    display: none;
+  }
+
+  /* products listing page */
+  .products-filters {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+/* ---------- small phones ---------- */
+@media (max-width: 420px) {
+  .dv-cat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dv-cat {
+    height: 170px;
+  }
+
+  .dv-shelf .dv-card {
+    flex-basis: 88vw;
+  }
+
+  .dv-hero-inner,
+  .dv-top .dv-hero-inner {
+    padding: 44px 14px 52px;
+  }
+}

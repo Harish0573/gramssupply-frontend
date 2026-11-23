@@ -4,6 +4,7 @@ import "./index.css";
 import "./i18n";
 import "./settings";
 import App from "./App.jsx";
+import "./styles/responsive.css";
 import { AuthProvider } from "./context/AuthContext";
 
 createRoot(document.getElementById("root")).render(

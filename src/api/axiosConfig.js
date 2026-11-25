@@ -1,31 +1,50 @@
+
 import axios from "axios";
 
 const api = axios.create({
-baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080/api",  headers: {
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    "https://gramsupply-backend-1.onrender.com/api",
+
+  headers: {
     "Content-Type": "application/json",
   },
 });
 
-// send the login token with every request, if the customer is signed in
+// Send login token with every request
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("jr_token");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
   return config;
 });
 
-// turns an axios error into a message we can show on screen
+// Handle API errors
 export function errorMessage(
   err,
-  fallback = "Something went wrong. Please try again.",
+  fallback = "Something went wrong. Please try again."
 ) {
   const data = err.response?.data;
-  if (!err.response) return "Cannot reach the server. Is the backend running?";
-  if (typeof data?.error === "string") return data.error;
-  // validation errors come back as { fieldName: "message" }
+
+  if (!err.response) {
+    return "Cannot reach the server. Is the backend running?";
+  }
+
+  if (typeof data?.error === "string") {
+    return data.error;
+  }
+
   if (data && typeof data === "object") {
     const first = Object.values(data)[0];
-    if (typeof first === "string") return first;
+
+    if (typeof first === "string") {
+      return first;
+    }
   }
+
   return fallback;
 }
 

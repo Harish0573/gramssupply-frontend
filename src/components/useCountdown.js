@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// Diwali 2026 is on 8 Nov — the sale runs until the night after
+// the offers reset at midnight every day
 export const SALE_END = new Date("2026-11-09T23:59:59+05:30").getTime();
 export const pad = (n) => String(n).padStart(2, "0");
 

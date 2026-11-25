@@ -126,6 +126,9 @@ function Checkout() {
   const [products, setProducts] = useState([]);
   const [placing, setPlacing] = useState(false);
   const [orderError, setOrderError] = useState("");
+  const [couponCode, setCouponCode] = useState("");
+  const [coupon, setCoupon] = useState(null);
+  const [couponBusy, setCouponBusy] = useState(false);
 
   // which items are we buying? either the single "buy now" item or the whole cart
   const [items] = useState(() => {
@@ -171,6 +174,28 @@ function Checkout() {
 
   const allPriced = lines.length > 0 && lines.every((l) => l.price !== null);
   const total = lines.reduce((sum, l) => sum + (l.price || 0) * l.quantity, 0);
+
+  // discount the server gave for the applied coupon (0 when none)
+  const couponDiscount = coupon && coupon.valid ? Number(coupon.discount) || 0 : 0;
+
+  // asks the server to check the coupon against the real cart prices
+  const applyCoupon = async () => {
+    const code = couponCode.trim();
+    if (!code) return;
+    setCouponBusy(true);
+    try {
+      const res = await api.post("/coupons/check", {
+        code,
+        organisation: form.organisation || "",
+        items: lines.map((l) => ({ productId: l.id, quantity: l.quantity })),
+      });
+      setCoupon(res.data);
+    } catch (err) {
+      setCoupon({ valid: false, code, message: errorMessage(err, "Could not check this coupon.") });
+    } finally {
+      setCouponBusy(false);
+    }
+  };
   const rupees = (n) => `₹${n.toLocaleString("en-IN")}`;
 
   const setField = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -229,6 +254,7 @@ function Checkout() {
       // never send the full card number or CVV, only the last 4 digits
       cardLast4: method === "card" ? digits.slice(-4) : null,
       items: lines.map((l) => ({ productId: l.id, quantity: l.quantity })),
+      couponCode: coupon && coupon.valid ? coupon.code : null,
     };
 
     try {
@@ -525,10 +551,33 @@ function Checkout() {
                 <b>{l.price ? rupees(l.price * l.quantity) : "On request"}</b>
               </div>
             ))}
+            <div className="coupon-box">
+              <div className="coupon-row">
+                <input
+                  value={couponCode}
+                  onChange={(e) => {
+                    setCouponCode(e.target.value.toUpperCase());
+                    setCoupon(null);
+                  }}
+                  placeholder="Coupon code"
+                  aria-label="Coupon code"
+                />
+                <button type="button" onClick={applyCoupon} disabled={couponBusy || !couponCode.trim()}>
+                  {couponBusy ? "Checking..." : "Apply"}
+                </button>
+              </div>
+              {coupon && (
+                <p className={coupon.valid ? "coupon-ok" : "coupon-bad"}>
+                  {coupon.valid && couponDiscount > 0
+                    ? `${coupon.code}: you save ${rupees(couponDiscount)}`
+                    : coupon.message}
+                </p>
+              )}
+            </div>
             <div className="sum-total">
               <span>Total</span>
               <strong>
-                {allPriced ? rupees(total) : "Confirmed after order"}
+                {allPriced ? rupees(total - couponDiscount) : "Confirmed after order"}
               </strong>
             </div>
             {!allPriced && (

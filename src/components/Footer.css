@@ -9,3 +9,63 @@
 .gf-bottom{border-top:1px solid #c9a24d33;padding:20px 24px;text-align:center;font-size:14px;color:#c9ad8a}
 @media(max-width:900px){.gf-inner{grid-template-columns:1fr 1fr}.gf-brand{grid-column:1/-1}}
 @media(max-width:520px){.gf-inner{grid-template-columns:1fr;width:calc(100% - 32px)}}
+
+
+/* ===== SOCIAL MEDIA ICONS FIX ===== */
+
+.gf .gf-social {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.gf .gf-social a {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px;
+    padding: 0 !important;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: #e8d2a6;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.gf .gf-social svg {
+    display: block;
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px !important;
+    min-height: 20px !important;
+    max-width: 20px !important;
+    max-height: 20px !important;
+    flex-shrink: 0;
+}
+
+/* WhatsApp hover */
+.gf .gf-social a:nth-child(1):hover {
+    background: #25D366;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Instagram hover */
+.gf .gf-social a:nth-child(2):hover {
+    background: #E1306C;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Facebook hover */
+.gf .gf-social a:nth-child(3):hover {
+    background: #1877F2;
+    color: white;
+    transform: translateY(-3px);
+}

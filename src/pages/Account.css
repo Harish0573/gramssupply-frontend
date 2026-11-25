@@ -1,9 +1,14 @@
+/* =========================================
+   AUTHENTICATION PAGE
+========================================= */
+
 .auth-page {
   min-height: 70vh;
   display: grid;
   place-items: start center;
   padding: 48px 16px;
 }
+
 .auth-card {
   width: min(420px, 100%);
   background: #fff;
@@ -14,12 +19,14 @@
   flex-direction: column;
   gap: 14px;
 }
+
 .auth-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-bottom: 2px solid #f5f0e5;
   margin-bottom: 4px;
 }
+
 .auth-tabs button {
   background: none;
   border: 0;
@@ -29,10 +36,12 @@
   border-bottom: 3px solid transparent;
   margin-bottom: -2px;
 }
+
 .auth-tabs button.on {
   color: #48121f;
   border-bottom-color: #7a1a2e;
 }
+
 .auth-card label,
 .profile-form label {
   display: flex;
@@ -41,6 +50,7 @@
   font-size: 16px;
   font-weight: 600;
 }
+
 .auth-card input,
 .profile-form input {
   height: 42px;
@@ -50,15 +60,18 @@
   font-weight: 400;
   font-size: 17px;
 }
+
 .auth-card input:focus,
 .profile-form input:focus {
   outline: 2px solid #7a1a2e55;
   border-color: #7a1f35;
 }
+
 .auth-error {
   color: #c0392b;
   font-size: 16px;
 }
+
 .auth-submit {
   display: inline-block;
   text-align: center;
@@ -70,16 +83,20 @@
   font-weight: 700;
   text-decoration: none;
 }
+
 .auth-submit:hover {
   background: #5c1325;
 }
+
 .auth-submit:disabled {
   opacity: 0.6;
 }
+
 .auth-switch {
   font-size: 16px;
   text-align: center;
 }
+
 .auth-switch button {
   background: none;
   border: 0;
@@ -87,6 +104,10 @@
   text-decoration: underline;
   font-size: 16px;
 }
+
+/* =========================================
+   ACCOUNT PAGE
+========================================= */
 
 .account-page {
   width: 100%;
@@ -97,12 +118,14 @@
   gap: 22px;
   align-items: start;
 }
+
 .account-side {
   background: #fff;
   border: 1px solid #f1e9d9;
   border-radius: 8px;
   padding: 10px;
 }
+
 .account-id {
   display: flex;
   flex-direction: column;
@@ -113,6 +136,7 @@
   margin-bottom: 8px;
   text-align: center;
 }
+
 .avatar {
   width: 54px;
   height: 54px;
@@ -124,9 +148,11 @@
   font-size: 24px;
   font-weight: 700;
 }
+
 .account-id small {
   color: #7b7088;
 }
+
 .account-side > button {
   width: 100%;
   display: flex;
@@ -140,6 +166,7 @@
   text-align: left;
   color: #46121e;
 }
+
 .account-side > button:hover,
 .account-side > button.on {
   background: #f5f0e5;
@@ -151,6 +178,7 @@
   font-size: 26px;
   margin-bottom: 16px;
 }
+
 .account-empty,
 .profile-form {
   background: #fff;
@@ -158,9 +186,14 @@
   border-radius: 8px;
   padding: 24px;
 }
+
 .account-empty p {
   margin-bottom: 14px;
 }
+
+/* =========================================
+   ORDER CARDS
+========================================= */
 
 .order-card {
   background: #fff;
@@ -169,6 +202,7 @@
   margin-bottom: 16px;
   overflow: hidden;
 }
+
 .order-card header {
   display: flex;
   gap: 28px;
@@ -178,11 +212,13 @@
   background: #f5f0e5;
   font-size: 16px;
 }
+
 .order-card header small {
   display: block;
   color: #7b7088;
   margin-bottom: 2px;
 }
+
 .status {
   margin-left: auto;
   padding: 5px 12px;
@@ -192,29 +228,35 @@
   font-size: 15px;
   font-weight: 700;
 }
+
 .status.cancelled {
   background: #eee;
   color: #666;
 }
+
 .order-card ul {
   list-style: none;
   padding: 14px 18px;
 }
+
 .order-card li {
   display: flex;
   justify-content: space-between;
   padding: 6px 0;
   font-size: 17px;
 }
+
 .order-card li span {
   color: #7b7088;
 }
+
 .order-actions {
   flex-wrap: wrap;
   display: flex;
   gap: 10px;
   padding: 0 18px 16px;
 }
+
 .order-actions button {
   padding: 8px 16px;
   border: 1px solid #7a1f35;
@@ -223,10 +265,12 @@
   border-radius: 5px;
   font-size: 16px;
 }
+
 .order-actions button.danger {
   border-color: #c0392b;
   color: #c0392b;
 }
+
 .order-details {
   border-top: 1px solid #f5f0e5;
   padding: 14px 18px;
@@ -236,20 +280,27 @@
   gap: 10px;
 }
 
+/* =========================================
+   PROFILE FORM
+========================================= */
+
 .profile-meta {
   font-size: 16px;
   color: #7b7088;
   margin-bottom: 16px;
 }
+
 .profile-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px 16px;
   margin-bottom: 18px;
 }
+
 .profile-grid .wide {
   grid-column: 1 / -1;
 }
+
 .saved-msg {
   margin-left: 12px;
   color: #2e9d62;
@@ -261,40 +312,882 @@
   .account-page {
     grid-template-columns: 1fr;
   }
+
   .profile-grid {
     grid-template-columns: 1fr;
   }
 }
 
-/* new profile layout: banner + option tiles + content below */
-.account-page.acc2{display:block!important;width:min(1240px,calc(100% - 48px));margin:0 auto;padding:32px 0 70px}
-.acc-hero{display:flex;align-items:center;gap:26px;flex-wrap:wrap;padding:32px 36px;border-radius:22px;color:#f3e3c4;background:radial-gradient(circle at 85% 20%,#7a2236,transparent 55%),linear-gradient(120deg,#240509,#4a0e1c 60%,#6f1a2d);box-shadow:0 14px 34px #3b0b1740}
-.acc-hero .avatar{display:grid;place-items:center;flex:none;width:92px;height:92px;border-radius:50%;background:linear-gradient(145deg,#e0b45a,#c9a24d);color:#3b0b17;font-family:"Cormorant Garamond",Georgia,serif;font-size:48px;font-weight:700;border:4px solid #ffffff55}
-.acc-who{flex:1;min-width:220px}.acc-who small{color:#e0b45a;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;font-size:13px}
-.acc-who h1{margin:2px 0 4px;font-family:"Cormorant Garamond","Noto Serif Devanagari",Georgia,serif;font-size:40px;color:#fff}.acc-who p{color:#e6cfa6;font-size:16px}
-.acc-stats{display:flex;gap:14px}.acc-stats div{display:grid;place-items:center;min-width:96px;padding:14px 10px;border-radius:14px;background:#ffffff14;border:1px solid #c9a24d66;font-size:14px;color:#e6cfa6}
-.acc-stats b{font-size:30px;color:#e0b45a;line-height:1.1}
-.acc-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}
-.acc-tile{display:flex;align-items:center;gap:14px;padding:20px;border-radius:16px;border:1px solid #e3d3b3;background:#fff;color:#2a1410;text-align:left;text-decoration:none;cursor:pointer;font:inherit;transition:.2s}
-.acc-tile svg{flex:none;color:#7a1a2e}.acc-tile b{display:block;font-size:18px}.acc-tile small{display:block;margin-top:2px;color:#7d6650;font-size:13px;line-height:1.35}
-.acc-tile:hover,.acc-tile.on{background:#7a1a2e;border-color:#7a1a2e;color:#fff;transform:translateY(-3px);box-shadow:0 10px 24px #7a1a2e44}
-.acc-tile:hover svg,.acc-tile.on svg,.acc-tile:hover small,.acc-tile.on small{color:#f3e3c4}
-.acc2 .account-main{background:#fff;border:1px solid #e3d3b3;border-radius:18px;padding:28px}.acc2 .account-main>h1{margin-bottom:18px}
-.enq-msg{padding:12px 4px 4px;color:#4a3328}
-@media(max-width:1000px){.acc-tiles{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.acc-tiles{grid-template-columns:1fr}.account-page.acc2{width:calc(100% - 24px)}.acc-stats{width:100%}.acc-stats div{flex:1}}
+/* =========================================
+   DESKTOP PROFILE LAYOUT
+========================================= */
 
-.acc-quick{flex-basis:100%;display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding-top:22px;border-top:1px solid #c9a24d55}
-.acc-pill{display:inline-flex;align-items:center;gap:9px;height:50px;padding:0 22px;border-radius:30px;background:#c9a24d;color:#3b0b17;font-weight:800;font-size:16px;text-decoration:none;transition:.2s}
-.acc-pill b{display:grid;place-items:center;min-width:26px;height:26px;padding:0 6px;border-radius:20px;background:#3b0b17;color:#e0b45a;font-size:14px}
-.acc-pill:hover{background:#e0b45a;transform:translateY(-2px)}
-.acc-lang{display:inline-flex;align-items:center;gap:6px;height:50px;padding:0 6px 0 16px;border-radius:30px;border:2px solid #c9a24d;color:#e0b45a}
-.acc-lang button{height:38px;padding:0 18px;border:0;border-radius:30px;background:transparent;color:#f3e3c4;font-size:15px;font-weight:800;cursor:pointer}
-.acc-lang button.on{background:#e0b45a;color:#3b0b17}.acc-lang button:not(.on):hover{background:#ffffff1f}
+.account-page.acc2 {
+  display: block !important;
+  width: min(1240px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 20px 0 70px;
+}
 
-/* profile page has its own slim bar, no shop header */
-.acc-top{display:flex;align-items:center;justify-content:space-between;width:min(1240px,calc(100% - 48px));margin:0 auto;padding:22px 0 0}
-.acc-brand{display:flex;align-items:center;gap:10px;color:#3b0b17;text-decoration:none;font-family:"Cormorant Garamond",Georgia,serif;font-size:28px;font-weight:700}
-.acc-brand span{display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:linear-gradient(145deg,#e0b45a,#c9a24d);color:#3b0b17;font-size:24px}.acc-brand b{color:#7a1a2e;margin-left:-8px}
-.acc-back{display:inline-flex;align-items:center;gap:8px;height:46px;padding:0 20px;border-radius:30px;border:2px solid #7a1a2e;color:#7a1a2e;font-weight:800;text-decoration:none;transition:.2s}.acc-back:hover{background:#7a1a2e;color:#fff}
-.account-page.acc2{padding-top:20px}
-@media(max-width:560px){.acc-top{width:calc(100% - 24px)}.acc-brand{font-size:22px}}
+.acc-hero {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+  padding: 32px 36px;
+  border-radius: 22px;
+  color: #f3e3c4;
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      #7a2236,
+      transparent 55%
+    ),
+    linear-gradient(
+      120deg,
+      #240509,
+      #4a0e1c 60%,
+      #6f1a2d
+    );
+
+  box-shadow: 0 14px 34px #3b0b1740;
+}
+
+.acc-hero .avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+
+  background: linear-gradient(
+    145deg,
+    #e0b45a,
+    #c9a24d
+  );
+
+  color: #3b0b17;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+  border: 4px solid #ffffff55;
+}
+
+.acc-who {
+  flex: 1;
+  min-width: 220px;
+}
+
+.acc-who small {
+  color: #e0b45a;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.acc-who h1 {
+  margin: 2px 0 4px;
+  font-family: "Cormorant Garamond",
+    "Noto Serif Devanagari", Georgia, serif;
+  font-size: 40px;
+  color: #fff;
+}
+
+.acc-who p {
+  color: #e6cfa6;
+  font-size: 16px;
+}
+
+/* =========================================
+   ACCOUNT STATISTICS
+========================================= */
+
+.acc-stats {
+  display: flex;
+  gap: 14px;
+}
+
+.acc-stats div {
+  display: grid;
+  place-items: center;
+  min-width: 96px;
+  padding: 14px 10px;
+  border-radius: 14px;
+  background: #ffffff14;
+  border: 1px solid #c9a24d66;
+  font-size: 14px;
+  color: #e6cfa6;
+}
+
+.acc-stats b {
+  font-size: 30px;
+  color: #e0b45a;
+  line-height: 1.1;
+}
+
+/* =========================================
+   ACCOUNT MENU TILES
+========================================= */
+
+.acc-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.acc-tile {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid #e3d3b3;
+  background: #fff;
+  color: #2a1410;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  font: inherit;
+  transition: 0.2s;
+}
+
+.acc-tile svg {
+  flex: none;
+  color: #7a1a2e;
+}
+
+.acc-tile b {
+  display: block;
+  font-size: 18px;
+}
+
+.acc-tile small {
+  display: block;
+  margin-top: 2px;
+  color: #7d6650;
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.acc-tile:hover,
+.acc-tile.on {
+  background: #7a1a2e;
+  border-color: #7a1a2e;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px #7a1a2e44;
+}
+
+.acc-tile:hover svg,
+.acc-tile.on svg,
+.acc-tile:hover small,
+.acc-tile.on small {
+  color: #f3e3c4;
+}
+
+.acc2 .account-main {
+  background: #fff;
+  border: 1px solid #e3d3b3;
+  border-radius: 18px;
+  padding: 28px;
+}
+
+.acc2 .account-main > h1 {
+  margin-bottom: 18px;
+}
+
+.enq-msg {
+  padding: 12px 4px 4px;
+  color: #4a3328;
+}
+
+/* =========================================
+   QUICK ACTION BUTTONS
+========================================= */
+
+.acc-quick {
+  flex-basis: 100%;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-top: 22px;
+  border-top: 1px solid #c9a24d55;
+}
+
+.acc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  height: 50px;
+  padding: 0 22px;
+  border-radius: 30px;
+  background: #c9a24d;
+  color: #3b0b17;
+  font-weight: 800;
+  font-size: 16px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.acc-pill b {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 6px;
+  border-radius: 20px;
+  background: #3b0b17;
+  color: #e0b45a;
+  font-size: 14px;
+}
+
+.acc-pill:hover {
+  background: #e0b45a;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   LANGUAGE SWITCH
+========================================= */
+
+.acc-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 50px;
+  padding: 0 6px 0 16px;
+  border-radius: 30px;
+  border: 2px solid #c9a24d;
+  color: #e0b45a;
+}
+
+.acc-lang button {
+  height: 38px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 30px;
+  background: transparent;
+  color: #f3e3c4;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.acc-lang button.on {
+  background: #e0b45a;
+  color: #3b0b17;
+}
+
+.acc-lang button:not(.on):hover {
+  background: #ffffff1f;
+}
+
+/* =========================================
+   UPDATED DESKTOP ACCOUNT HEADER
+   SAME AS HOME PAGE
+========================================= */
+
+header.acc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  height: 89px !important;
+  min-height: 89px !important;
+
+  margin: 0 !important;
+  padding: 0 24px !important;
+
+  box-sizing: border-box;
+
+  background: linear-gradient(
+    110deg,
+    #3b0b17 0%,
+    #7a1a2e 55%,
+    #5c1325 100%
+  ) !important;
+}
+
+/* GramSupply brand */
+
+header.acc-top .acc-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #ffffff !important;
+  text-decoration: none;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Golden G logo */
+
+header.acc-top .acc-brand span {
+  display: grid;
+  place-items: center;
+
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+
+  background: linear-gradient(
+    145deg,
+    #f0d18a,
+    #c9a24d
+  );
+
+  color: #3b0b17;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+/* Golden dot */
+
+header.acc-top .acc-brand b {
+  color: #e0b45a !important;
+  margin-left: -10px;
+}
+
+/* Remove Back to shop */
+
+.acc-back {
+  display: none !important;
+}
+
+/* =========================================
+   DESKTOP HEADER VISIBILITY
+========================================= */
+
+.account-mobile-header {
+  display: none;
+}
+
+@media screen and (min-width: 769px) {
+
+  header.acc-top {
+    display: flex !important;
+  }
+
+  .account-mobile-header {
+    display: none !important;
+  }
+
+}
+
+/* =========================================
+   SHARED ACCOUNT FOOTER
+   DESKTOP AND MOBILE
+========================================= */
+
+.account-footer,
+.account-mobile-footer {
+  display: block !important;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================================
+   RESPONSIVE RULES
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .acc-tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .acc-tiles {
+    grid-template-columns: 1fr;
+  }
+
+  .account-page.acc2 {
+    width: calc(100% - 24px);
+  }
+
+  .acc-stats {
+    width: 100%;
+  }
+
+  .acc-stats div {
+    flex: 1;
+  }
+
+  .acc-brand {
+    font-size: 22px;
+  }
+
+}
+
+/* =========================================
+   MOBILE ACCOUNT UI
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+  /* Mobile header */
+
+  .account-mobile-header {
+    display: contents !important;
+  }
+
+  header.acc-top {
+    display: none !important;
+  }
+
+  /* Mobile footer */
+
+  .account-footer,
+  .account-mobile-footer {
+    display: block !important;
+    width: 100%;
+  }
+
+  /* Mobile account container */
+
+  .account-page.acc2 {
+    width: calc(100% - 20px);
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 14px 0 24px;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Mobile profile card */
+
+  .acc2 .acc-hero {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 18px 14px;
+    border-radius: 14px;
+    background: #fffaf0;
+    color: #3b0b17;
+    border: 1px solid #e8d9bd;
+    box-shadow: 0 4px 14px #3b0b1710;
+  }
+
+  .acc2 .acc-hero .avatar {
+    width: 58px;
+    height: 58px;
+    font-size: 28px;
+    background: #eee4d2;
+    color: #7a1a2e;
+    border: none;
+    font-family: Arial, sans-serif;
+  }
+
+  .acc2 .acc-who {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .acc2 .acc-who small {
+    color: #a77c36;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .acc2 .acc-who h1 {
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    color: #3b0b17;
+    margin: 4px 0;
+    line-height: 1.3;
+  }
+
+  .acc2 .acc-who p {
+    color: #786b64;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  /* Orders, wishlist and enquiries */
+
+  .acc2 .acc-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .acc2 .acc-stats div {
+    min-width: 0;
+    padding: 12px 4px;
+    border-radius: 10px;
+    background: #fbf6ec;
+    border: 1px solid #e3d3b3;
+    color: #786b64;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .acc2 .acc-stats b {
+    color: #a77c36;
+    font-size: 23px;
+    margin-bottom: 4px;
+  }
+
+  /* Quick action buttons */
+
+  .acc2 .acc-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 14px;
+    border-top: 1px solid #e8d9bd;
+  }
+
+  .acc2 .acc-pill {
+    height: 40px;
+    padding: 0 14px;
+    background: #ffffff;
+    border: 1px solid #e3d3b3;
+    color: #3b0b17;
+    font-size: 12px;
+    gap: 6px;
+    border-radius: 20px;
+  }
+
+  .acc2 .acc-pill:hover {
+    transform: none;
+  }
+
+  .acc2 .acc-pill svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .acc2 .acc-pill b {
+    min-width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+
+  /* Language switch */
+
+  .acc2 .acc-lang {
+    height: 40px;
+    padding: 0 5px 0 10px;
+    border: 1px solid #e3d3b3;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #7a1a2e;
+  }
+
+  .acc2 .acc-lang svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .acc2 .acc-lang button {
+    height: 30px;
+    padding: 0 14px;
+    font-size: 12px;
+    color: #786b64;
+  }
+
+  .acc2 .acc-lang button.on {
+    background: #c9a24d;
+    color: #3b0b17;
+  }
+
+  /* Mobile account menu */
+
+  .acc2 .acc-tiles {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .acc2 .acc-tile {
+    position: relative;
+    min-height: 65px;
+    min-width: 0;
+    padding: 14px 36px 14px 14px;
+    gap: 14px;
+    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e8d9bd;
+    color: #3b0b17;
+    box-shadow: 0 3px 8px #3b0b1708;
+  }
+
+  .acc2 .acc-tile svg {
+    width: 23px;
+    height: 23px;
+    color: #7a1a2e;
+    flex-shrink: 0;
+  }
+
+  .acc2 .acc-tile > span {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .acc2 .acc-tile b {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .acc2 .acc-tile small {
+    font-size: 11px;
+    color: #786b64;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* App-style right arrow */
+
+  .acc2 .acc-tile::after {
+    content: "";
+    position: absolute;
+    right: 17px;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #a77c36;
+    border-right: 2px solid #a77c36;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .acc2 .acc-tile:hover {
+    transform: none;
+    background: #ffffff;
+    border-color: #e8d9bd;
+    color: #3b0b17;
+  }
+
+  .acc2 .acc-tile:hover svg {
+    color: #7a1a2e;
+  }
+
+  .acc2 .acc-tile:hover small {
+    color: #786b64;
+  }
+
+  /* Active account menu */
+
+  .acc2 .acc-tile.on {
+    background: #7a1a2e;
+    border-color: #7a1a2e;
+    color: #ffffff;
+    transform: none;
+    box-shadow: 0 4px 12px #7a1a2e25;
+  }
+
+  .acc2 .acc-tile.on svg,
+  .acc2 .acc-tile.on small {
+    color: #f3e3c4;
+  }
+
+  .acc2 .acc-tile.on::after {
+    border-color: #f3e3c4;
+  }
+
+  /* Account main content */
+
+  .acc2 .account-main {
+    min-width: 0;
+    padding: 16px;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid #e3d3b3;
+  }
+
+  .acc2 .account-main h1 {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #3b0b17;
+    margin-bottom: 14px;
+  }
+
+  .acc2 .account-empty,
+  .acc2 .profile-form {
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  .acc2 .account-empty p {
+    line-height: 1.6;
+  }
+
+  .acc2 .auth-submit {
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    background: #7a1a2e;
+    color: #ffffff;
+  }
+
+  /* Mobile profile form */
+
+  .acc2 .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .acc2 .profile-form label {
+    font-size: 13px;
+  }
+
+  .acc2 .profile-form input {
+    width: 100%;
+    min-width: 0;
+    height: 44px;
+    font-size: 16px;
+    border-radius: 8px;
+    border-color: #e3d3b3;
+  }
+
+  .acc2 .profile-meta {
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .acc2 .saved-msg {
+    font-size: 12px;
+  }
+
+  .acc2 .auth-error {
+    font-size: 13px;
+  }
+
+  /* Mobile order cards */
+
+  .acc2 .order-card {
+    border-radius: 10px;
+  }
+
+  .acc2 .order-card header {
+    gap: 12px;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .acc2 .order-card ul {
+    padding: 12px;
+  }
+
+  .acc2 .order-card li {
+    gap: 8px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .acc2 .order-card li span {
+    flex-shrink: 0;
+  }
+
+  .acc2 .order-actions {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .acc2 .order-actions button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 12px;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+
+  .acc2 .order-details {
+    font-size: 12px;
+    padding: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .acc2 .status {
+    font-size: 11px;
+  }
+
+  .acc2 .enq-msg {
+    font-size: 13px;
+    padding: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  /* Remove duplicate mobile profile icon */
+
+  .account-mobile-header
+  .site-header
+  .header-actions > a[href="/account"] {
+    display: none !important;
+  }
+
+}
+
+/* =========================================
+   EXTRA SMALL MOBILE SCREENS
+========================================= */
+
+@media screen and (max-width: 360px) {
+
+  .account-page.acc2 {
+    width: calc(100% - 16px);
+  }
+
+  .acc2 .acc-hero {
+    padding: 14px 10px;
+    gap: 10px;
+  }
+
+  .acc2 .acc-who h1 {
+    font-size: 19px;
+  }
+
+  .acc2 .acc-hero .avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 24px;
+  }
+
+  .acc2 .acc-stats {
+    gap: 5px;
+  }
+
+  .acc2 .acc-stats div {
+    font-size: 10px;
+  }
+
+  .acc2 .acc-pill {
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .acc2 .acc-lang button {
+    padding: 0 10px;
+  }
+
+  .acc2 .account-main {
+    padding: 12px;
+  }
+
+}
+
+/* =========================================
+   END OF ACCOUNT.CSS
+========================================= */

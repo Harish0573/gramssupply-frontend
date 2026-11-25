@@ -277,7 +277,260 @@ const products = [
     warranty: "Confirm with supplier",
     delivery: "Available subject to delivery location",
     returnPolicy: "Subject to supplier terms"
+  },
+
+    {
+    id: 10,
+    name: "0.5 HP Water Pump Motor",
+    category: "Water Systems",
+    description: "Reliable 0.5 HP motor for village water supply and borewell pumping.",
+    image: "/products/water.jpg",
+    priceLabel: "6500",
+    brand: "GramSupply",
+    model: "GS-WM-010",
+    availability: "Available on Request",
+    highlights: [
+      "Suitable for borewell and village water supply",
+      "Energy efficient operation",
+      "Compact and easy to install",
+      "Suitable for continuous duty use"
+    ],
+    specifications: [
+      { label: "Product Type", value: "Water Pump Motor" },
+      { label: "Power", value: "0.5 HP" },
+      { label: "Application", value: "Borewell / Water Supply" },
+      { label: "Installation", value: "Site Dependent" },
+      { label: "Model Number", value: "GS-WM-010" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Available subject to delivery location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 11,
+    name: "1 HP Submersible Motor",
+    category: "Water Systems",
+    description: "Heavy duty submersible motor for deep borewells and water tanks.",
+    image: "/products/water.jpg",
+    priceLabel: "12500",
+    brand: "GramSupply",
+    model: "GS-WM-011",
+    availability: "Available on Request",
+    highlights: [
+      "Designed for deep borewell use",
+      "Heavy duty construction",
+      "Suitable for water tank filling",
+      "Reliable for daily water supply"
+    ],
+    specifications: [
+      { label: "Product Type", value: "Submersible Motor" },
+      { label: "Power", value: "1 HP" },
+      { label: "Application", value: "Deep Borewell / Tank Filling" },
+      { label: "Installation", value: "Submersible" },
+      { label: "Model Number", value: "GS-WM-011" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Available subject to delivery location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 12,
+    name: "PVC Pipe 1 inch (3m)",
+    category: "Water Systems",
+    description: "Strong PVC pipe for drinking water and drainage lines.",
+    image: "/products/water.jpg",
+    priceLabel: "320",
+    brand: "GramSupply",
+    model: "GS-WP-012",
+    availability: "Available on Request",
+    highlights: [
+      "Lightweight and corrosion resistant",
+      "Suitable for drinking water lines",
+      "Easy to cut and join",
+      "Long service life"
+    ],
+    specifications: [
+      { label: "Product Type", value: "PVC Pipe" },
+      { label: "Diameter", value: "1 inch" },
+      { label: "Length", value: "3 metre" },
+      { label: "Application", value: "Water Supply / Drainage" },
+      { label: "Model Number", value: "GS-WP-012" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Available subject to delivery location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 13,
+    name: "GI Pipe 1.5 inch (6m)",
+    category: "Water Systems",
+    description: "Galvanised iron pipe for main water supply lines.",
+    image: "/products/water.jpg",
+    priceLabel: "1450",
+    brand: "GramSupply",
+    model: "GS-WP-013",
+    availability: "Available on Request",
+    highlights: [
+      "Galvanised for rust protection",
+      "Suitable for main water lines",
+      "High pressure tolerance",
+      "Durable for public infrastructure"
+    ],
+    specifications: [
+      { label: "Product Type", value: "GI Pipe" },
+      { label: "Diameter", value: "1.5 inch" },
+      { label: "Length", value: "6 metre" },
+      { label: "Material", value: "Galvanised Iron" },
+      { label: "Model Number", value: "GS-WP-013" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Available subject to delivery location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 14,
+    name: "Water Tank 500 Litre",
+    category: "Water Systems",
+    description: "Food grade water storage tank for homes, schools and panchayat offices.",
+    image: "/products/water.jpg",
+    priceLabel: "4200",
+    brand: "GramSupply",
+    model: "GS-WT-014",
+    availability: "Available on Request",
+    highlights: [
+      "Food grade storage",
+      "UV resistant body",
+      "Suitable for homes and schools",
+      "Easy to install on stand or roof"
+    ],
+    specifications: [
+      { label: "Product Type", value: "Water Storage Tank" },
+      { label: "Capacity", value: "500 Litre" },
+      { label: "Material", value: "Food Grade Plastic" },
+      { label: "Installation", value: "Ground or Roof" },
+      { label: "Model Number", value: "GS-WT-014" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Available subject to delivery location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 15,
+    name: "Water Tank 1000 Litre",
+    category: "Water Systems",
+    description: "Large capacity water storage tank for institutions and villages.",
+    image: "/products/water.jpg",
+    priceLabel: "7800",
+    brand: "GramSupply",
+    model: "GS-WT-015",
+    availability: "Available on Request",
+    highlights: [
+      "Large capacity for institutions",
+      "Food grade storage",
+      "UV resistant body",
+      "Suitable for village water supply"
+    ],
+    specifications: [
+      { label: "Product Type", value: "Water Storage Tank" },
+      { label: "Capacity", value: "1000 Litre" },
+      { label: "Material", value: "Food Grade Plastic" },
+      { label: "Installation", value: "Ground or Roof" },
+      { label: "Model Number", value: "GS-WT-015" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Available subject to delivery location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 16,
+    name: "Public Park Bench (Steel)",
+    category: "Furniture",
+    description: "Weather resistant steel bench for parks, bus stops and public places.",
+    image: "/products/furniture.jpg",
+    priceLabel: "5400",
+    brand: "GramSupply",
+    model: "GS-FB-016",
+    availability: "Available on Request",
+    highlights: [
+      "Weather resistant steel frame",
+      "Suitable for parks and bus stops",
+      "Low maintenance",
+      "Designed for public use"
+    ],
+    specifications: [
+      { label: "Product Type", value: "Public Bench" },
+      { label: "Material", value: "Steel" },
+      { label: "Seating", value: "Multi person" },
+      { label: "Installation", value: "Floor fixed" },
+      { label: "Model Number", value: "GS-FB-016" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Installation and delivery subject to location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 17,
+    name: "School Bench with Desk",
+    category: "Furniture",
+    description: "Durable bench and desk set for classrooms.",
+    image: "/products/furniture.jpg",
+    priceLabel: "3800",
+    brand: "GramSupply",
+    model: "GS-FB-017",
+    availability: "Available on Request",
+    highlights: [
+      "Designed for classroom use",
+      "Durable construction",
+      "Ergonomic seating height",
+      "Easy to maintain"
+    ],
+    specifications: [
+      { label: "Product Type", value: "School Bench with Desk" },
+      { label: "Seating", value: "Two students" },
+      { label: "Material", value: "Confirm with supplier" },
+      { label: "Usage", value: "Schools and Institutions" },
+      { label: "Model Number", value: "GS-FB-017" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Installation and delivery subject to location",
+    returnPolicy: "Subject to supplier terms"
+  },
+
+  {
+    id: 18,
+    name: "Cement Bench for Parks",
+    category: "Furniture",
+    description: "Solid cement bench for outdoor use in gardens and village chowks.",
+    image: "/products/furniture.jpg",
+    priceLabel: "4600",
+    brand: "GramSupply",
+    model: "GS-FB-018",
+    availability: "Available on Request",
+    highlights: [
+      "Solid construction for outdoor use",
+      "Weather resistant",
+      "Suitable for gardens and chowks",
+      "Long service life"
+    ],
+    specifications: [
+      { label: "Product Type", value: "Cement Bench" },
+      { label: "Material", value: "Cement Concrete" },
+      { label: "Seating", value: "Multi person" },
+      { label: "Installation", value: "Floor fixed" },
+      { label: "Model Number", value: "GS-FB-018" }
+    ],
+    warranty: "Confirm with supplier",
+    delivery: "Installation and delivery subject to location",
+    returnPolicy: "Subject to supplier terms"
   }
+
 ];
 
 export default products;

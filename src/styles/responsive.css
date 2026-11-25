@@ -1,9 +1,3 @@
-/* ==========================================================
-   GramSupply: mobile and tablet responsive overrides
-   Loaded last from main.jsx, so these rules win over page CSS.
-   ========================================================== */
-
-/* ---------- global ---------- */
 html,
 body {
   overflow-x: hidden;
@@ -14,7 +8,6 @@ img {
   height: auto;
 }
 
-/* ---------- categories: sidebar becomes a horizontal scroll row (tablet and phone) ---------- */
 @media (max-width: 1000px) {
   .dv-top {
     display: block;
@@ -59,7 +52,6 @@ img {
   }
 }
 
-/* ---------- phones ---------- */
 @media (max-width: 700px) {
   .dv-home {
     width: calc(100% - 20px);
@@ -267,7 +259,7 @@ img {
 
   .dv-moq,
   .dv-left,
-  .dv-card-body > small {
+  .dv-card-body>small {
     font-size: 12px;
   }
 
@@ -310,10 +302,12 @@ img {
     font-size: 16px;
   }
 }
+
 /* ==========================================================
    Phone layout round 2: header row, coupons grid, product grid
    ========================================================== */
 @media (max-width: 700px) {
+
   /* header: logo and icons in one row, search full width below */
   .main-header-inner {
     display: flex;
@@ -361,6 +355,7 @@ img {
 }
 
 @media (max-width: 420px) {
+
   .dv-grid,
   .dv-coupons {
     gap: 10px;
@@ -370,6 +365,7 @@ img {
     transform: scale(0.8);
   }
 }
+
 /* ==========================================================
    Phone coupons: text on top, coupon code below
    ========================================================== */
@@ -383,18 +379,19 @@ img {
     overflow: hidden;
   }
 
-  .dv-coupon > * {
+  .dv-coupon>* {
     max-width: 100%;
   }
 
   .dv-coupon button,
   .dv-coupon .dv-code,
-  .dv-coupon > span:last-child {
+  .dv-coupon>span:last-child {
     align-self: flex-start;
     max-width: 100%;
     white-space: nowrap;
   }
 }
+
 /* ==========================================================
    Phone header: brand name, language and profile in ONE row
    ========================================================== */
@@ -403,8 +400,8 @@ img {
     flex-wrap: wrap;
   }
 
-  .main-header-inner > .brand,
-  .main-header-inner > .header-actions {
+  .main-header-inner>.brand,
+  .main-header-inner>.header-actions {
     flex-wrap: nowrap;
   }
 
@@ -447,6 +444,7 @@ img {
     transform: scale(0.7);
   }
 }
+
 /* ==========================================================
    Phone: Festive deals by category as a 2-column grid
    ========================================================== */
@@ -487,6 +485,7 @@ img {
     font-size: 14px;
   }
 }
+
 /* ==========================================================
    Phone: banners (Request for quotation, Solar Diwali) as a swipe slider
    ========================================================== */
@@ -505,12 +504,13 @@ img {
     display: none;
   }
 
-  .dv-duo > * {
+  .dv-duo>* {
     flex: 0 0 85%;
     scroll-snap-align: start;
     min-width: 0;
   }
 }
+
 /* ==========================================================
    All Products page (phone): filters in a tidy grid, products 2 per row
    ========================================================== */
@@ -521,11 +521,11 @@ img {
     gap: 10px;
   }
 
-  .products-filters > * {
+  .products-filters>* {
     min-width: 0;
   }
 
-  .products-filters > *:last-child {
+  .products-filters>*:last-child {
     grid-column: 1 / -1;
   }
 
@@ -554,19 +554,21 @@ img {
     padding: 20px 16px;
   }
 }
+
 /* ==========================================================
    All Products filters: keep every box inside the screen
    ========================================================== */
 @media (max-width: 700px) {
+
   .products-filters,
-  .products-filters > *,
+  .products-filters>*,
   .products-filters select {
     box-sizing: border-box;
     max-width: 100%;
     min-width: 0;
   }
 
-  .products-filters > * {
+  .products-filters>* {
     width: 100%;
     overflow: hidden;
   }
@@ -576,16 +578,18 @@ img {
     min-width: 0 !important;
   }
 }
+
 /* ==========================================================
    Product cards on listing pages: short view, full details on "View product"
    (applies to phones; the full product details page is unchanged)
    ========================================================== */
 @media (max-width: 700px) {
+
   .market-product-description,
   .market-product-rating,
   .price-line,
-  .market-product-bottom > small,
-  .market-product-info > small {
+  .market-product-bottom>small,
+  .market-product-info>small {
     display: none !important;
   }
 
@@ -620,6 +624,7 @@ img {
     font-size: 13px;
   }
 }
+
 /* ==========================================================
    Product details page, PHONE: image stays on the LEFT (sticky),
    details scroll on the RIGHT
@@ -683,6 +688,7 @@ img {
     gap: 2px;
   }
 }
+
 /* ==========================================================
    Product details page, PHONE (final): image on TOP in full width,
    details BELOW it (no side column)
@@ -709,6 +715,7 @@ img {
     object-fit: contain;
   }
 }
+
 @media (max-width: 720px) {
   .sale-strip {
     display: none !important;
@@ -720,4 +727,1364 @@ img {
   .dv-side {
     display: none !important;
   }
+}
+
+/* ==========================================================
+   PHONE ROUND 3
+   1) smaller hero banner   2) smaller coupon cards   3) header fits Android
+   4) clear product image   5) product cards show image + name only;
+      tap card -> product details page (all details, price, discount, buy now)
+   ========================================================== */
+@media (max-width: 700px) {
+
+  /* 1) hero banner smaller */
+  .dv-hero-inner,
+  .dv-top .dv-hero-inner {
+    min-height: 0;
+    padding: 22px 16px 26px;
+  }
+
+  .dv-hero h1,
+  .dv-top .dv-hero h1 {
+    font-size: 26px;
+    margin: 0;
+  }
+
+  .dv-hero p,
+  .dv-top .dv-hero p {
+    font-size: 14px;
+    margin: 6px 0 12px;
+  }
+
+  .dv-hero-cta a,
+  .dv-hero-cta button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  /* 2) coupon cards smaller */
+  .dv-coupons {
+    gap: 8px;
+  }
+
+  .dv-coupon {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .dv-coupon h3,
+  .dv-coupon strong {
+    font-size: 15px;
+    line-height: 1.2;
+  }
+
+  .dv-coupon p,
+  .dv-coupon small {
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .dv-coupon button,
+  .dv-coupon .dv-code {
+    height: 28px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  /* 3) header fits Android screens */
+  .header-container {
+    width: calc(100% - 16px);
+  }
+
+  .header-search input {
+    height: 40px;
+    font-size: 14px;
+  }
+
+  /* 4) clear product image */
+  .dv-card-img {
+    height: 180px;
+  }
+
+  .market-product-image {
+    height: 180px;
+  }
+
+  .dv-card-img img,
+  .market-product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 5) listing cards: image + name only */
+  .market-product-card>*:not(.market-product-image):not(.market-product-info),
+  .market-product-info>*:not(.market-product-name) {
+    display: none !important;
+  }
+
+  .dv-card-body>*:not(.dv-name) {
+    display: none !important;
+  }
+
+  .market-product-card,
+  .dv-card {
+    position: relative;
+  }
+
+  /* tapping anywhere on the card opens the product details page */
+  .market-product-name::after,
+  .dv-name::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  .market-product-name,
+  .dv-name {
+    font-size: 15px;
+    line-height: 1.3;
+    padding: 8px 10px 12px;
+    margin: 0;
+    min-height: 0;
+    display: block;
+  }
+}
+
+/* ==========================================================
+   PHONE: Home product cards - discount and rating shown BELOW the name
+   (image on top, then name, then "40% OFF" and rating)
+   ========================================================== */
+@media (max-width: 700px) {
+  .dv-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .dv-card-img {
+    display: contents;
+  }
+
+  .dv-card-img>a {
+    order: 1;
+    display: block;
+  }
+
+  .dv-card-img>a img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .dv-heart {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 3;
+  }
+
+  .dv-card-body {
+    order: 2;
+  }
+
+  .dv-off {
+    position: static !important;
+    order: 3;
+    align-self: flex-start;
+    margin: 6px 10px 0;
+  }
+
+  .dv-rate {
+    position: static !important;
+    order: 4;
+    align-self: flex-start;
+    margin: 4px 10px 10px;
+  }
+}
+
+/* ==========================================================
+   PHONE: "Festive deals by category" as a swipe slider, bigger photos,
+   text kept at the bottom so the picture is visible
+   ========================================================== */
+@media (max-width: 700px) {
+  .dv-cat-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 4px 2px 12px;
+  }
+
+  .dv-cat-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dv-cat {
+    flex: 0 0 72%;
+    height: 280px;
+    scroll-snap-align: start;
+    border-radius: 16px;
+    min-width: 0;
+  }
+
+  .dv-cat img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .dv-cat div {
+    padding: 44px 14px 14px;
+  }
+
+  .dv-cat strong {
+    font-size: 19px;
+    line-height: 1.2;
+  }
+
+  .dv-cat span {
+    font-size: 12px;
+    margin: 6px 0 4px;
+    padding: 4px 10px;
+  }
+
+  .dv-cat em {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 420px) {
+  .dv-cat {
+    flex: 0 0 78%;
+    height: 260px;
+  }
+}
+
+/* ==========================================================
+   PHONE: Home product cards - remove the "% OFF" badge,
+   show original price (struck through) and the discounted price clearly
+   ========================================================== */
+@media (max-width: 700px) {
+  .dv-off {
+    display: none !important;
+  }
+
+  .dv-card-body>.dv-price {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+    padding: 0 10px;
+    margin: 2px 0 0;
+  }
+
+  .dv-price strong {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #7a1a2e;
+    font-weight: 800;
+  }
+
+  .dv-price del {
+    font-size: 13px;
+    color: #8a6f55;
+  }
+
+  .dv-price span {
+    display: none;
+  }
+}
+
+/* ==========================================================
+   PHONE: tighter spacing between product name, price and rating (Home cards)
+   ========================================================== */
+@media (max-width: 700px) {
+  .dv-name {
+    padding: 6px 10px 0 !important;
+    margin: 0 !important;
+  }
+
+  .dv-card-body>.dv-price {
+    margin: 0 !important;
+    padding: 0 10px;
+  }
+
+  .dv-rate {
+    margin: 2px 10px 8px !important;
+  }
+
+  .dv-card-body {
+    padding: 0 !important;
+    gap: 0;
+  }
+}
+
+@media(max-width: 700px) {
+
+  .market-product-info>.market-product-category,
+  .market-product-info>.market-product-description,
+  .market-product-info>.market-product-rating {
+    display: none !important;
+  }
+
+  .market-product-info>.market-product-bottom {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    margin: 0;
+    padding: 0 10px 10px;
+  }
+
+  .market-product-bottom>*:not(.market-product-price) {
+    display: none !important;
+  }
+
+  .market-product-price {
+    display: block !important;
+  }
+
+  .price-line {
+    display: flex !important;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .price-line strong {
+    font-size: 18px;
+    line-height: 1.2;
+    color: #7a1a2e;
+    font-weight: 800;
+  }
+
+  .price-line .dv-left {
+    font-size: 13px;
+    color: #8a6f55;
+  }
+
+  .price-line span {
+    display: none
+  }
+
+  .market-product-info>.market-product-name {
+    padding: 6px 10px 0px;
+    margin: 0;
+  }
+}
+
+.sale-strip,
+.dv-tag,
+.dv-hero-note,
+.sale-link {
+  display: none !important;
+}
+
+/* ==========================================================
+   ALL SCREENS: remove the Diwali visual effects only (lights, sticker,
+   glow, animations). Original colours (maroon, gold, cream) are kept.
+   ========================================================== */
+.dv-lights,
+.dv-stickwrap,
+.dv-sticker {
+  display: none !important;
+}
+
+.dv-hero *,
+.dv-hero::before,
+.dv-hero::after {
+  animation: none !important;
+}
+
+.dv-hero::before,
+.dv-hero::after {
+  display: none !important;
+}
+
+.dv-arch {
+  box-shadow: none !important;
+}
+
+.dv-btn.gold {
+  box-shadow: none !important;
+}
+
+@media (max-width: 700px) {
+  .dv-hero {
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .dv-hero-bg {
+    object-position: center 30%;
+  }
+
+  .dv-hero-ov {
+    background: linear-gradient(180deg, rgba(36, 5, 9, 0) 35%, rgba(36, 5, 9, 0.88) 78%, rgba(36, 5, 9, 0.95) 100%) !important;
+  }
+
+  .dv-hero-inner,
+  .dv-top .dv-hero-inner {
+    display: block;
+    min-height: 0;
+    padding: 16px 16px 46px;
+  }
+
+  .dv-hero-copy {
+    margin-bottom: 4px;
+  }
+
+  .dv-hero h1,
+  .dv-top .dv-hero h1 {
+    font-size: 26px;
+    margin: 4px 0 4px;
+  }
+
+  .dv-hero p,
+  .dv-top .dv-hero p {
+    font-size: 14px;
+    margin: 0 0 12px;
+  }
+
+  .dv-hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 0 12px;
+  }
+
+  .dv-hero-cta a,
+  .dv-hero-cta button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .dv-hero-note {
+    display: none !important;
+  }
+
+  .dv-dots {
+    left: 50%;
+    bottom: 14px;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 700px) {
+  .dv-coupons {
+    display: flex;
+    overflow-x: auto;
+    gap: 12px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 4px 2px 12px;
+  }
+
+  .dv-coupons::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dv-coupon {
+    flex: 0 0 62%;
+    scroll-snap-align: start;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================
+   HOME PAGE: dynamic design (animations)
+   ========================================================== */
+
+/* hero: text slides in and the photo slowly zooms when a slide changes */
+@keyframes gsHeroIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gsKenBurns {
+  from {
+    transform: scale(1.08);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.dv-hero-copy {
+  animation: gsHeroIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.dv-hero-copy .dv-tag,
+.dv-hero-copy h1,
+.dv-hero-copy p,
+.dv-hero-cta {
+  animation: gsHeroIn 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.dv-hero-copy h1 {
+  animation-delay: 0.08s;
+}
+
+.dv-hero-copy p {
+  animation-delay: 0.16s;
+}
+
+.dv-hero-cta {
+  animation-delay: 0.24s;
+}
+
+.dv-hero-bg {
+  animation: gsKenBurns 7s ease-out both;
+}
+
+/* gold button: moving shine */
+@keyframes gsShine {
+  0% {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+
+  100% {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+
+.dv-btn.gold {
+  position: relative;
+  overflow: hidden;
+}
+
+.dv-btn.gold::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: gsShine 3.2s ease-in-out infinite;
+}
+
+.dv-btn.gold:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* section titles: gold line draws in under the title */
+.dv-title {
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.dv-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 80px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #c9a24d, #7a1a2e);
+}
+
+/* category tiles: lift and glow on hover */
+.dv-cat {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.dv-cat:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 36px rgba(59, 11, 23, 0.28);
+}
+
+/* product cards: gentle float on hover */
+.dv-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dv-card:hover {
+  transform: translateY(-6px);
+}
+
+/* trust row: icons bob up and down */
+@keyframes gsBob {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.dv-trust>div svg {
+  animation: gsBob 3s ease-in-out infinite;
+}
+
+.dv-trust>div:nth-child(2) svg {
+  animation-delay: 0.4s;
+}
+
+.dv-trust>div:nth-child(3) svg {
+  animation-delay: 0.8s;
+}
+
+.dv-trust>div:nth-child(4) svg {
+  animation-delay: 1.2s;
+}
+
+/* countdown: soft glow pulse */
+@keyframes gsGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(201, 162, 77, 0);
+  }
+
+  50% {
+    box-shadow: 0 0 18px rgba(201, 162, 77, 0.55);
+  }
+}
+
+.dv-clock span {
+  animation: gsGlow 2.4s ease-in-out infinite;
+}
+
+/* scroll reveal: cards fade and rise as they enter the screen (Chrome, Edge) */
+@supports (animation-timeline: view()) {
+  @keyframes gsReveal {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.97);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .dv-cat,
+  .dv-banner,
+  .dv-trust,
+  .dv-coupon {
+    animation: gsReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+/* reduce motion for people who turn it off in their device settings */
+@media (prefers-reduced-motion: reduce) {
+
+  .dv-hero-copy,
+  .dv-hero-copy *,
+  .dv-hero-bg,
+  .dv-btn.gold::after,
+  .dv-trust>div svg,
+  .dv-clock span {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================
+   PRODUCT CARDS (all screens): image stays inside its box and never
+   covers the name, price or buttons below it
+   ========================================================== */
+.market-product-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.market-product-image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: #fff;
+  flex: none;
+}
+
+.market-product-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.market-product-info {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+}
+
+@media (max-width: 700px) {
+  .market-product-image {
+    height: 170px;
+  }
+
+
+  /* ==========================================================
+   NAVBAR: marketplace look (Flipkart style layout, maroon colours)
+   Header stays fixed at the top while the page scrolls.
+   ========================================================== */
+
+/* clip instead of hidden so the sticky header keeps working */
+html,
+body {
+  overflow-x: clip;
+}
+
+/* the whole header (top bar + category row) sticks to the top */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 4px 14px rgba(59, 11, 23, 0.18);
+}
+
+/* top bar: maroon, logo left, search in the middle, account and cart right */
+.main-header {
+  background: #7a1a2e;
+  background: linear-gradient(90deg, #3b0b17, #7a1a2e 60%, #5c1325);
+  padding: 10px 0;
+}
+.main-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.brand-lockup {
+  flex: none;
+}
+.brand-mark {
+  background: linear-gradient(135deg, #c9a24d, #e0b45a);
+  color: #3b0b17;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.brand-copy strong {
+  color: #fff;
+  font-size: 26px;
+}
+.brand-copy strong span {
+  color: #e0b45a;
+}
+.brand-copy small {
+  color: #f3d9a4;
+}
+
+/* search: white box, fills the middle */
+.header-search {
+  flex: 1;
+  max-width: 760px;
+  height: 46px;
+  border-radius: 6px;
+  background: #fff;
+  border: 0;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+.header-search input {
+  font-size: 15px;
+  background: transparent;
+}
+.header-search svg {
+  color: #7a1a2e;
+}
+
+/* account, location, more, cart: white text on maroon */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: none;
+}
+.header-actions .header-link,
+.header-actions .header-link span,
+.header-actions .header-link svg {
+  color: #fff;
+}
+.header-actions .header-link span {
+  font-size: 15px;
+  font-weight: 700;
+}
+.location-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+.location-btn span,
+.location-btn b {
+  color: #fff;
+}
+.lang-toggle {
+  background: rgba(255, 255, 255, 0.12);
+  border: 0;
+}
+.lang-toggle b {
+  color: #f3e3c4;
+}
+.lang-toggle b.on {
+  background: #e0b45a;
+  color: #3b0b17;
+}
+
+/* cart: gold count badge */
+.cart-link .cart-icon-wrap i {
+  background: #e0b45a;
+  color: #3b0b17;
+}
+
+/* category row: white strip under the top bar, underline on the active item */
+.category-row {
+  background: #fff;
+  border-bottom: 1px solid #efe3cc;
+}
+.category-row-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.category-row-inner::-webkit-scrollbar {
+  display: none;
+}
+.cat-item {
+  position: relative;
+  flex: none;
+  padding: 14px 16px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.cat-item:hover {
+  color: var(--pink);
+}
+.cat-item.active {
+  color: var(--pink);
+}
+.cat-item.active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+  background: var(--pink);
+}
+.cat-item svg {
+  display: none;
+}
+.sale-link {
+  color: var(--pink);
+}
+.sale-link i {
+  background: #c9a24d;
+  color: #3b0b17;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-style: normal;
+  font-size: 11px;
+  margin-left: 4px;
+}
+
+/* phone: keep the top bar compact, search goes full width below the logo */
+@media (max-width: 900px) {
+  .main-header-inner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .header-search {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .location-btn span {
+    display: none;
+  }
+}
+/* ==========================================================
+   COMPACT MARKETPLACE CATEGORY ROW (phone and small windows)
+   Short pills instead of big text, like Flipkart / Amazon apps.
+   ========================================================== */
+@media (max-width: 900px) {
+  .category-row-inner {
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .cat-item {
+    padding: 7px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 20px;
+    background: #f7efe0;
+    border: 1px solid #efe3cc;
+  }
+  .cat-item.active {
+    background: #7a1a2e;
+    border-color: #7a1a2e;
+    color: #fff;
+  }
+  .cat-item.active::after {
+    display: none;
+  }
+  .sale-link {
+    background: #fff;
+    border-color: #7a1a2e;
+  }
+  .sale-link i {
+    margin-left: 4px;
+  }
+
+  /* Products page heading: short and compact */
+  .products-heading {
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+  .products-heading h1 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  .products-heading p {
+    display: none;
+  }
+  .products-eyebrow,
+  .products-heading .eyebrow {
+    font-size: 10px;
+  }
+}
+
+/* ==========================================================
+   PRODUCTS PAGE (phone): remove the long intro line,
+   sort / price / discount become small selects, one below another
+   ========================================================== */
+@media (max-width: 900px) {
+  .products-heading span {
+    display: none;
+  }
+  .products-filters {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .products-filters label {
+    font-size: 11px;
+    gap: 4px;
+  }
+  .products-filters select {
+    height: 36px;
+    font-size: 13px;
+    padding: 0 10px;
+    border-radius: 8px;
+  }
+}
+
+/* ==========================================================
+   PRODUCTS PAGE (phone): remove the search and "All Categories" box,
+   Sort / Price / Discount in ONE row, no overlap
+   ========================================================== */
+@media (max-width: 900px) {
+  .products-toolbar {
+    display: none !important;
+  }
+  .products-filters {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    align-items: end;
+  }
+  .products-filters > * {
+    min-width: 0;
+    width: 100%;
+  }
+  .products-filters label {
+    font-size: 10px;
+    gap: 3px;
+    min-width: 0;
+  }
+  .products-filters select {
+    width: 100%;
+    height: 36px;
+    font-size: 12px;
+    padding: 0 6px;
+    border-radius: 8px;
+    text-overflow: ellipsis;
+  }
+}
+/* ==========================================================
+   PHONE HEADER: Account, More and Cart always visible in one row.
+   Language and delivery location move out of the way on phones.
+   ========================================================== */
+@media (max-width: 900px) {
+  .header-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 14px;
+    flex: none;
+    overflow: visible;
+  }
+  .header-actions .lang-toggle,
+  .header-actions .location {
+    display: none !important;
+  }
+  .header-actions .header-link span {
+    display: none;
+  }
+  .header-actions div.dropdown:last-of-type .header-link span {
+    display: inline;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .cart-link {
+    display: flex !important;
+    align-items: center;
+    gap: 4px;
+  }
+  .cart-link > span:last-child {
+    display: inline !important;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .cart-link .cart-icon-wrap {
+    position: relative;
+    display: inline-flex;
+  }
+  .cart-link .cart-icon-wrap svg {
+    color: #fff;
+  }
+  .cart-link .cart-icon-wrap i {
+    position: absolute;
+    top: -8px;
+    right: -9px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 9px;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 18px;
+    text-align: center;
+  }
+}
+  
+
+/* ==========================================================
+   ACCOUNT / PROFILE PAGE (phone): lighter and more compact.
+   Same colours, but the big maroon block is softer and smaller.
+   ========================================================== */
+@media (max-width: 900px) {
+  .acc-hero {
+    padding: 18px 16px 16px;
+    border-radius: 16px;
+    background: linear-gradient(160deg, #fbf3e4 0%, #f3e3c4 100%);
+    color: var(--ink);
+    box-shadow: 0 4px 14px rgba(59, 11, 23, 0.08);
+    border: 1px solid #e8d9bc;
+  }
+  .acc-hero .avatar {
+    width: 64px;
+    height: 64px;
+    font-size: 26px;
+  }
+  .acc-hero h1,
+  .acc-hero h2 {
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 6px 0 4px;
+    color: var(--plum);
+  }
+  .acc-hero p,
+  .acc-hero small {
+    font-size: 13px;
+    color: var(--mute);
+  }
+  .acc-stats {
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .acc-stats > * {
+    padding: 10px 6px;
+    border-radius: 12px;
+    background: #fff;
+    border: 1px solid #efe3cc;
+  }
+  .acc-stats strong,
+  .acc-stats b {
+    font-size: 18px;
+    color: var(--plum);
+  }
+  .acc-stats span,
+  .acc-stats small {
+    font-size: 11px;
+    color: var(--mute);
+  }
+  .acc-quick {
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .acc-pill {
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 20px;
+    background: #fff;
+    color: var(--plum);
+    border: 1px solid #e3d3b3;
+    box-shadow: none;
+  }
+  .acc-lang {
+    margin-top: 10px;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: 1px solid #e3d3b3;
+    background: #fff;
+    color: var(--plum);
+  }
+  .acc-tiles {
+    gap: 10px;
+  }
+  .acc-tile {
+    padding: 14px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #efe3cc;
+    color: var(--ink);
+    box-shadow: 0 2px 8px rgba(59, 11, 23, 0.06);
+  }
+  .acc-tile strong {
+    font-size: 15px;
+    color: var(--plum);
+  }
+  .acc-tile p,
+  .acc-tile small {
+    font-size: 12px;
+    color: var(--mute);
+  }
+  .account-main {
+    padding: 14px 12px;
+  }
+  .acc-back {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+
+/* ==========================================================
+   ACCOUNT PROFILE BOX (phone): faded look, avatar on the left,
+   "Hello," + name + details on the right (like the Flipkart profile card)
+   ========================================================== */
+@media (max-width: 900px) {
+  .acc-hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: 14px;
+    row-gap: 6px;
+    padding: 16px;
+    background: #fdf9f1;
+    border: 1px solid #efe3cc;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(59, 11, 23, 0.05);
+    color: var(--ink);
+  }
+  .acc-hero .avatar {
+    grid-row: 1 / span 3;
+    grid-column: 1;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    background: #efe3cc;
+    color: var(--plum);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(59, 11, 23, 0.08);
+  }
+  .acc-hero > *:not(.avatar):not(.acc-stats):not(.acc-quick):not(.acc-lang) {
+    grid-column: 2;
+    margin: 0;
+  }
+  .acc-hero h1,
+  .acc-hero h2 {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--plum);
+    margin: 0;
+  }
+  .acc-hero p,
+  .acc-hero small {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--mute);
+    margin: 0;
+  }
+  .acc-stats,
+  .acc-quick,
+  .acc-lang {
+    grid-column: 1 / -1;
+  }
+  .acc-stats {
+    margin-top: 10px;
+  }
+  .acc-stats > * {
+    background: #fbf6ec;
+    border: 1px solid #efe3cc;
+    box-shadow: none;
+  }
+}
+
+/* ==========================================================
+   ACCOUNT stats: clearer numbers and labels (still soft colours)
+   ========================================================== */
+@media (max-width: 900px) {
+  .acc-stats strong,
+  .acc-stats b {
+    color: var(--plum);
+    opacity: 1;
+    font-weight: 800;
+  }
+  .acc-stats span,
+  .acc-stats small {
+    color: #5d4a3a;
+    opacity: 1;
+  }
+  .acc-stats > * {
+    border-color: #e3d3b3;
+  }
+}
+
+/* ==========================================================
+   FOOTER (phone and small windows): columns side by side in rows,
+   like the marketplace footer. Brand block on top, then 3 columns.
+   ========================================================== */
+@media (max-width: 900px) {
+  .gf-inner {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 12px;
+    padding: 24px 16px;
+  }
+  .gf-brand {
+    grid-column: 1 / -1;
+  }
+  .gf-brand strong {
+    font-size: 22px;
+  }
+  .gf-brand p {
+    font-size: 12px;
+    margin: 6px 0;
+  }
+  .gf-help {
+    font-size: 12px;
+  }
+  .gf-inner nav {
+    min-width: 0;
+  }
+  .gf-inner nav h4 {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin: 0 0 8px;
+  }
+  .gf-inner nav a {
+    display: block;
+    font-size: 12px;
+    line-height: 1.6;
+    word-break: break-word;
+  }
+  .gf-bottom {
+    font-size: 11px;
+    padding: 12px 16px;
+    text-align: center;
+  }
+}
+
+/* ==========================================================
+   FOOTER: social icons (WhatsApp, Instagram, Facebook)
+   ========================================================== */
+.gf-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+}
+.gf-social a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #e0b45a;
+  transition: background 0.2s, transform 0.2s;
+}
+.gf-social a:hover {
+  background: #c9a24d;
+  color: #3b0b17;
+  transform: translateY(-2px);
+}
+.gf-social svg {
+  width: 20px;
+  height: 20px;
+}
+/* ==========================================================
+   ACCOUNT PAGE: soft light-maroon tint behind the profile card
+   ========================================================== */
+.account-page,
+.account-page.acc2 {
+  background: linear-gradient(180deg, #f5e6e6 0%, #f9efe8 45%, #fbf6ec 100%);
+  min-height: 100%;
+}
+.account-main {
+  background: transparent;
+}
+
+/* ==========================================================
+   FOOTER SOCIAL ICONS: fixed size, one row, all screens
+   ========================================================== */
+.gf-social {
+  display: flex !important;
+  flex-direction: row;
+  gap: 12px;
+  margin-top: 14px;
+}
+.gf-social a {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  display: inline-grid !important;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #e0b45a;
+  transition: background 0.2s, transform 0.2s;
+}
+.gf-social a:hover {
+  background: #c9a24d;
+  color: #3b0b17;
+  transform: translateY(-2px);
+}
+.gf-social svg {
+  width: 20px !important;
+  height: 20px !important;
+}
 }

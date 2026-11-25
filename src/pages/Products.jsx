@@ -1,25 +1,75 @@
-
 import React, { useEffect, useMemo, useState } from "react";
-import { Search } from "lucide-react";
+
+import {
+  Search,
+  LayoutGrid,
+  Trash2,
+  Lightbulb,
+  Camera,
+  Monitor,
+  Droplets,
+  Armchair,
+  Dumbbell,
+  Construction,
+  Zap,
+  Package,
+  ArrowLeft
+} from "lucide-react";
+
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import Footer from "../components/Footer";
+
 import { getPricing } from "../utils/pricing";
 import api from "../api/axiosConfig";
-import { fetchProducts, cartEntry, sameCartItem } from "../utils/catalog";
+
+import {
+  fetchProducts,
+  cartEntry,
+  sameCartItem
+} from "../utils/catalog";
 
 import "./Products.css";
 
 const PAGE_SIZE = 12;
 
+// ==========================================
+// PRICE RANGES
+// ==========================================
+
 const PRICE_RANGES = [
-  { key: "u1000", label: "Under ₹1,000", min: 0, max: 1000 },
-  { key: "1k-5k", label: "₹1,000 – ₹5,000", min: 1000, max: 5000 },
-  { key: "5k-25k", label: "₹5,000 – ₹25,000", min: 5000, max: 25000 },
-  { key: "25k+", label: "Above ₹25,000", min: 25000, max: Infinity },
+  {
+    key: "u1000",
+    label: "Under ₹1,000",
+    min: 0,
+    max: 1000
+  },
+  {
+    key: "1k-5k",
+    label: "₹1,000 – ₹5,000",
+    min: 1000,
+    max: 5000
+  },
+  {
+    key: "5k-25k",
+    label: "₹5,000 – ₹25,000",
+    min: 5000,
+    max: 25000
+  },
+  {
+    key: "25k+",
+    label: "Above ₹25,000",
+    min: 25000,
+    max: Infinity
+  }
 ];
+
+// ==========================================
+// SORT OPTIONS
+// ==========================================
 
 const SORTS = [
   ["recommended", "Recommended"],
@@ -27,27 +77,228 @@ const SORTS = [
   ["price-desc", "Price: high to low"],
   ["discount", "Biggest discount"],
   ["newest", "Newest first"],
-  ["name", "Name: A to Z"],
+  ["name", "Name: A to Z"]
 ];
 
+// ==========================================
+// CATEGORY ICONS AND NAMES
+// ==========================================
+
+const CATEGORY_STYLES = [
+  {
+    keywords: ["cleaning", "sanitation", "waste", "hygiene"],
+    label: "Cleaning",
+    icon: Trash2
+  },
+  {
+    keywords: ["lighting", "street light", "outdoor light"],
+    label: "Lighting",
+    icon: Lightbulb
+  },
+  {
+    keywords: ["cctv", "security", "surveillance"],
+    label: "CCTV",
+    icon: Camera
+  },
+  {
+    keywords: ["computer", "electronics", "technology", "it equipment"],
+    label: "Computers",
+    icon: Monitor
+  },
+  {
+    keywords: ["water", "purification", "ro plant"],
+    label: "Water",
+    icon: Droplets
+  },
+  {
+    keywords: ["furniture"],
+    label: "Furniture",
+    icon: Armchair
+  },
+  {
+    keywords: ["playground", "sports", "fitness", "gym"],
+    label: "Playground",
+    icon: Dumbbell
+  },
+  {
+    keywords: ["infrastructure", "construction", "civil"],
+    label: "Infrastructure",
+    icon: Construction
+  },
+  {
+    keywords: ["solar", "safety", "fire"],
+    label: "Solar & Safety",
+    icon: Zap
+  }
+];
+
+// ==========================================
+// NORMALIZE CATEGORY NAME
+// ==========================================
+
+function normalizeCategory(name) {
+  return String(name || "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLowerCase();
+}
+
+// ==========================================
+// CATEGORY STYLE
+// ==========================================
+
+function getCategoryStyle(name) {
+  const normalizedName = normalizeCategory(name);
+
+  return (
+    CATEGORY_STYLES.find(
+      (category) =>
+        normalizeCategory(category.label) === normalizedName
+    ) ||
+
+    CATEGORY_STYLES.find(
+      (category) =>
+        category.keywords.some((keyword) =>
+          normalizedName.includes(keyword)
+        )
+    ) || {
+      label: name,
+      icon: Package
+    }
+  );
+}
+
+// ==========================================
+// REMOVE DUPLICATE CATEGORIES
+// ==========================================
+
+function removeDuplicateCategories(categoryList) {
+  const uniqueCategories = new Map();
+
+  categoryList.forEach((category) => {
+    const name = String(category?.name || "").trim();
+
+    if (!name) return;
+
+    const key = normalizeCategory(name);
+
+    if (!uniqueCategories.has(key)) {
+      uniqueCategories.set(key, {
+        ...category,
+        name
+      });
+    }
+  });
+
+  return Array.from(uniqueCategories.values());
+}
+
+// ==========================================
+// GROUP SAME CATEGORY LABELS
+// ==========================================
+
+function groupCategories(categoryList) {
+  const grouped = new Map();
+
+  categoryList.forEach((category) => {
+    const style = getCategoryStyle(category.name);
+    const key = normalizeCategory(style.label);
+
+    if (!grouped.has(key)) {
+      grouped.set(key, {
+        id: key,
+        name: style.label,
+        label: style.label,
+        icon: style.icon,
+        originalNames: []
+      });
+    }
+
+    grouped.get(key).originalNames.push(category.name);
+  });
+
+  const categoryOrder = CATEGORY_STYLES.map(
+    (item) => normalizeCategory(item.label)
+  );
+
+  return Array.from(grouped.values()).sort((a, b) => {
+    const indexA = categoryOrder.indexOf(a.id);
+    const indexB = categoryOrder.indexOf(b.id);
+
+    return (
+      (indexA === -1 ? 999 : indexA) -
+      (indexB === -1 ? 999 : indexB)
+    );
+  });
+}
+
+// ==========================================
+// PRODUCTS COMPONENT
+// ==========================================
+
 function Products() {
-  // ==================================
-  // 1. URL SEARCH AND CATEGORY FILTER
-  // ==================================
+  const { t } = useTranslation();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
+  // ========================================
+  // URL PARAMETERS
+  // ========================================
+
   const search = searchParams.get("search") || "";
 
-  const selectedCategoryFromUrl =
+  const selectedCategory =
     searchParams.get("category") || "All";
 
-  const [selectedCategory, setSelectedCategory] = useState(
-    selectedCategoryFromUrl
-  );
+  const selectedGroup =
+    searchParams.get("group") || "";
+
+  const view = searchParams.get("view") || "";
+
+  const sort =
+    searchParams.get("sort") || "recommended";
+
+  const priceKey =
+    searchParams.get("price") || "";
+
+  const minDisc =
+    Number(searchParams.get("disc") || 0);
+
+  // ========================================
+  // CATEGORY SCREEN AND PRODUCT SCREEN
+  // ========================================
+
+  const isCategoryScreen =
+    view !== "products" &&
+    selectedCategory === "All" &&
+    !selectedGroup &&
+    !search &&
+    !priceKey &&
+    !minDisc &&
+    sort === "recommended";
+
+  // ========================================
+  // STATES
+  // ========================================
+
+  const [products, setProducts] = useState([]);
+
+  const [categories, setCategories] = useState([]);
+
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState("");
+
+  const [visible, setVisible] = useState(PAGE_SIZE);
+
+  // ========================================
+  // SEARCH FUNCTION
+  // ========================================
 
   const setSearch = (value) => {
     const newParams = new URLSearchParams(searchParams);
+
+    newParams.set("view", "products");
 
     if (value) {
       newParams.set("search", value);
@@ -55,47 +306,69 @@ function Products() {
       newParams.delete("search");
     }
 
-    setSearchParams(newParams, { replace: true });
+    setSearchParams(newParams, {
+      replace: true
+    });
   };
 
-  useEffect(() => {
-    setSelectedCategory(searchParams.get("category") || "All");
-  }, [searchParams]);
-
-  // ==================================
-  // 2. PRODUCT AND CATEGORY STATES
-  // ==================================
-
-  const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-
-  // ==================================
-  // 3. FETCH DATA FROM SPRING BOOT
-  // ==================================
+  // ========================================
+  // FETCH PRODUCTS AND CATEGORIES
+  // ========================================
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [productResponse, categoryResponse] = await Promise.all([
-          fetchProducts(),
-          api.get("/categories").then((r) => r.data).catch(() => localCategories),
-        ]);
+        const [productResponse, categoryResponse] =
+          await Promise.all([
+            fetchProducts(),
 
-        const formattedProducts = productResponse;
+            api
+              .get("/categories")
+              .then((response) => response.data)
+              .catch(() => [])
+          ]);
+
+        const formattedProducts =
+          Array.isArray(productResponse)
+            ? productResponse
+            : [];
 
         setProducts(formattedProducts);
-        setCategories(categoryResponse);
+
+        if (
+          Array.isArray(categoryResponse) &&
+          categoryResponse.length > 0
+        ) {
+          setCategories(
+            removeDuplicateCategories(categoryResponse)
+          );
+
+        } else {
+
+          const fallbackCategories = formattedProducts
+            .map((product, index) => ({
+              id: `fallback-${index}`,
+              name:
+                product.category ||
+                product.categoryName ||
+                ""
+            }))
+            .filter((category) => category.name);
+
+          setCategories(
+            removeDuplicateCategories(fallbackCategories)
+          );
+        }
 
         setError("");
+
       } catch (err) {
         console.error("API Error:", err);
 
         setError(
           "Unable to load products. Please check your backend connection."
         );
+
       } finally {
         setLoading(false);
       }
@@ -104,18 +377,25 @@ function Products() {
     fetchData();
   }, []);
 
-  // ==================================
-  // 4. LABELS, FILTERS AND SORTING
-  // ==================================
+  // ========================================
+  // UNIQUE CATEGORY BOXES
+  // ========================================
 
-  const sort = searchParams.get("sort") || "recommended";
-  const priceKey = searchParams.get("price") || "";
-  const minDisc = Number(searchParams.get("disc") || 0);
+  const uniqueCategoryBoxes = useMemo(() => {
+    return groupCategories(categories);
+  }, [categories]);
 
-  const [visible, setVisible] = useState(PAGE_SIZE);
+  const isAllSelected =
+    selectedCategory === "All" && !selectedGroup;
+
+  // ========================================
+  // UPDATE URL FILTERS
+  // ========================================
 
   const setParam = (key, value) => {
     const next = new URLSearchParams(searchParams);
+
+    next.set("view", "products");
 
     if (value) {
       next.set(key, value);
@@ -123,58 +403,100 @@ function Products() {
       next.delete(key);
     }
 
-    setSearchParams(next, { replace: true });
+    setSearchParams(next, {
+      replace: true
+    });
   };
 
-  // Add original price, discount and badges
+  // ========================================
+  // PRODUCT PRICING AND BADGES
+  // ========================================
+
   const decorated = useMemo(() => {
     const newestIds = new Set(
       [...products]
         .sort((a, b) => b.id - a.id)
         .slice(0, 4)
-        .map((p) => p.id)
+        .map((product) => product.id)
     );
 
-    return products.map((p) => {
-      const { has, pct, mrp } = getPricing(p);
+    return products.map((product) => {
+      const { has, pct, mrp } = getPricing(product);
 
-      const badge = newestIds.has(p.id)
+      const badge = newestIds.has(product.id)
         ? "NEW"
         : has && pct >= 45
           ? "BEST DEAL"
           : "";
 
       return {
-        ...p,
+        ...product,
         pct: has ? pct : 0,
         mrp,
-        badge,
+        badge
       };
     });
+
   }, [products]);
 
+  // ========================================
   // FILTER PRODUCTS
+  // ========================================
+
   const filteredProducts = useMemo(() => {
-    const range = PRICE_RANGES.find((r) => r.key === priceKey);
+    const range = PRICE_RANGES.find(
+      (item) => item.key === priceKey
+    );
+
     const text = search.toLowerCase();
 
-    return decorated.filter((p) => {
-      const price = Number(p.price);
+    return decorated.filter((product) => {
+      const price = Number(product.price);
+
+      const productCategory =
+        product.category ||
+        product.categoryName ||
+        "";
+
+      const normalizedProductCategory =
+        normalizeCategory(productCategory);
+
+      const productCategoryGroup =
+        normalizeCategory(
+          getCategoryStyle(productCategory).label
+        );
 
       const matchesSearch =
-        (p.name || "").toLowerCase().includes(text) ||
-        (p.category || "").toLowerCase().includes(text);
+        String(product.name || "")
+          .toLowerCase()
+          .includes(text) ||
 
-      const matchesCategory =
-        selectedCategory === "All" ||
-        p.category === selectedCategory;
+        normalizedProductCategory.includes(text);
+
+      const matchesCategory = selectedGroup
+
+        ? productCategoryGroup ===
+          normalizeCategory(selectedGroup)
+
+        : selectedCategory === "All" ||
+
+          normalizedProductCategory ===
+          normalizeCategory(selectedCategory);
 
       const matchesPrice =
         !range ||
-        (price > 0 && price >= range.min && price < range.max);
+        (
+          price > 0 &&
+          price >= range.min &&
+          price < range.max
+        );
 
       const matchesDiscount =
-        minDisc === 0 || (price > 0 && p.pct >= minDisc);
+        minDisc === 0 ||
+        (
+          price > 0 &&
+          product.pct >= minDisc
+        );
 
       return (
         matchesSearch &&
@@ -183,27 +505,47 @@ function Products() {
         matchesDiscount
       );
     });
-  }, [decorated, search, selectedCategory, priceKey, minDisc]);
 
+  }, [
+    decorated,
+    search,
+    selectedCategory,
+    selectedGroup,
+    priceKey,
+    minDisc
+  ]);
+
+  // ========================================
   // SORT PRODUCTS
-  const sortedProducts = useMemo(() => {
-    const priced = (p) => Number(p.price) > 0;
+  // ========================================
 
-    const byPrice = (dir) => (a, b) => {
+  const sortedProducts = useMemo(() => {
+    const priced = (product) =>
+      Number(product.price) > 0;
+
+    const byPrice = (direction) => (a, b) => {
       if (!priced(a) && !priced(b)) return 0;
+
       if (!priced(a)) return 1;
+
       if (!priced(b)) return -1;
 
-      return dir * (a.price - b.price);
+      return direction * (a.price - b.price);
     };
 
     const comparators = {
       "price-asc": byPrice(1),
+
       "price-desc": byPrice(-1),
-      discount: (a, b) => b.pct - a.pct,
-      newest: (a, b) => b.id - a.id,
+
+      discount: (a, b) =>
+        b.pct - a.pct,
+
+      newest: (a, b) =>
+        b.id - a.id,
+
       name: (a, b) =>
-        (a.name || "").localeCompare(b.name || ""),
+        (a.name || "").localeCompare(b.name || "")
     };
 
     const list = [...filteredProducts];
@@ -211,34 +553,48 @@ function Products() {
     return comparators[sort]
       ? list.sort(comparators[sort])
       : list;
+
   }, [filteredProducts, sort]);
 
-  // RESET PAGINATION WHEN FILTERS CHANGE
+  // ========================================
+  // RESET PAGINATION
+  // ========================================
+
   useEffect(() => {
     setVisible(PAGE_SIZE);
-  }, [search, selectedCategory, sort, priceKey, minDisc]);
+  }, [
+    search,
+    selectedCategory,
+    selectedGroup,
+    sort,
+    priceKey,
+    minDisc,
+    view
+  ]);
 
-  const shownProducts = sortedProducts.slice(0, visible);
+  const shownProducts =
+    sortedProducts.slice(0, visible);
 
   const hasFilters = Boolean(
     search ||
     selectedCategory !== "All" ||
+    selectedGroup ||
     sort !== "recommended" ||
     priceKey ||
     minDisc
   );
 
-  // ==================================
-  // 5. ADD TO CART
-  // ==================================
+  // ========================================
+  // ADD TO CART
+  // ========================================
 
   const handleAddToCart = (product) => {
     const existingCart = JSON.parse(
       localStorage.getItem("jr_cart") || "[]"
     );
 
-    const existingItem = existingCart.find((item) =>
-      sameCartItem(item, product)
+    const existingItem = existingCart.find(
+      (item) => sameCartItem(item, product)
     );
 
     if (existingItem) {
@@ -252,41 +608,110 @@ function Products() {
       JSON.stringify(existingCart)
     );
 
-    window.dispatchEvent(new Event("cart-updated"));
+    window.dispatchEvent(
+      new Event("cart-updated")
+    );
 
     alert(`${product.name} added to cart!`);
   };
 
-  // ==================================
-  // 6. CATEGORY DROPDOWN HANDLER
-  // ==================================
+  // ========================================
+  // DESKTOP CATEGORY SELECTION
+  // ========================================
 
   const handleCategoryChange = (value) => {
-    setSelectedCategory(value);
+    const newParams =
+      new URLSearchParams(searchParams);
 
-    const newParams = new URLSearchParams(searchParams);
+    newParams.set("view", "products");
 
-    if (value === "All") {
+    newParams.delete("group");
+
+    if (value.startsWith("group:")) {
+
       newParams.delete("category");
+
+      newParams.set(
+        "group",
+        value.substring(6)
+      );
+
+    } else if (value === "All") {
+
+      newParams.delete("category");
+
     } else {
+
       newParams.set("category", value);
+
     }
 
-    setSearchParams(newParams, { replace: true });
+    setSearchParams(newParams, {
+      replace: true
+    });
   };
 
-  // ==================================
-  // 7. CLEAR FILTERS
-  // ==================================
+  // ========================================
+  // OPEN SELECTED CATEGORY PRODUCTS
+  // ========================================
+
+  const handleCategoryGroupChange = (value) => {
+    const newParams = new URLSearchParams();
+
+    newParams.set("view", "products");
+
+    if (value !== "All") {
+      newParams.set("group", value);
+    }
+
+    setSearchParams(newParams, {
+      replace: false
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
+  };
+
+  // ========================================
+  // BACK TO CATEGORY GRID
+  // ========================================
+
+  const handleBackToCategories = () => {
+    setSearchParams(
+      {
+        view: "categories"
+      },
+      {
+        replace: false
+      }
+    );
+
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
+  };
+
+  // ========================================
+  // CLEAR FILTERS
+  // ========================================
 
   const clearFilters = () => {
-    setSearchParams({}, { replace: true });
-    setSelectedCategory("All");
+    setSearchParams(
+      {
+        view: "products"
+      },
+      {
+        replace: true
+      }
+    );
   };
 
-  // ==================================
-  // 8. LOADING SCREEN
-  // ==================================
+  // ========================================
+  // LOADING SCREEN
+  // ========================================
 
   if (loading) {
     return (
@@ -300,9 +725,9 @@ function Products() {
     );
   }
 
-  // ==================================
-  // 9. ERROR SCREEN
-  // ==================================
+  // ========================================
+  // ERROR SCREEN
+  // ========================================
 
   if (error) {
     return (
@@ -310,26 +735,40 @@ function Products() {
         <Navbar />
 
         <main className="products-page">
+
           <h2>{error}</h2>
 
-          <button onClick={() => window.location.reload()}>
+          <button
+            onClick={() => window.location.reload()}
+          >
             Try Again
           </button>
+
         </main>
       </>
     );
   }
 
-  // ==================================
-  // 10. PRODUCTS PAGE UI
-  // ==================================
+  // ========================================
+  // MAIN PRODUCTS PAGE
+  // ========================================
 
   return (
     <>
       <Navbar />
 
-      <main className="products-page">
+      <main
+        className={`products-page ${
+          isCategoryScreen
+            ? "category-only-screen"
+            : "product-only-screen"
+        }`}
+      >
+
+        {/* DESKTOP PAGE HEADING */}
+
         <section className="products-heading">
+
           <p>THE GRAMSUPPLY CATALOGUE</p>
 
           <h1>
@@ -339,164 +778,380 @@ function Products() {
           </h1>
 
           <span>
-            Explore supplies for village infrastructure, sanitation,
-            technology, furniture and public institutions.
+            Explore supplies for village infrastructure,
+            sanitation, technology, furniture and public
+            institutions.
           </span>
+
         </section>
 
-        {/* SEARCH AND CATEGORY */}
+        {/* =================================
+            CATEGORY ONLY SCREEN
+        ================================= */}
 
-        <div className="products-toolbar">
-          <div className="products-search">
-            <Search size={20} />
+        {isCategoryScreen && (
 
-            <input
-              type="text"
-              placeholder="Search products or categories..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </div>
+          <section className="products-mobile-categories">
 
-          <select
-            value={selectedCategory}
-            onChange={(e) =>
-              handleCategoryChange(e.target.value)
-            }
-          >
-            <option value="All">All Categories</option>
+            <div className="products-category-heading">
 
-            {categories.map((category) => (
-              <option key={category.id} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
+              <h2>
+                {t("Shop by category")}
+              </h2>
 
-        {/* SORT AND FILTERS */}
+              <button
+                type="button"
+                className="products-view-all"
+                onClick={() =>
+                  handleCategoryGroupChange("All")
+                }
+              >
+                <LayoutGrid size={16} />
 
-        <div className="products-filters">
-          <label>
-            Sort by
+                {t("View all")}
 
-            <select
-              value={sort}
-              onChange={(e) =>
-                setParam(
-                  "sort",
-                  e.target.value === "recommended"
-                    ? ""
-                    : e.target.value
-                )
-              }
-            >
-              {SORTS.map(([value, label]) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            Price
-
-            <select
-              value={priceKey}
-              onChange={(e) =>
-                setParam("price", e.target.value)
-              }
-            >
-              <option value="">Any price</option>
-
-              {PRICE_RANGES.map((r) => (
-                <option key={r.key} value={r.key}>
-                  {r.label}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            Discount
-
-            <select
-              value={minDisc || ""}
-              onChange={(e) =>
-                setParam("disc", e.target.value)
-              }
-            >
-              <option value="">Any discount</option>
-
-              {[10, 20, 30, 40].map((d) => (
-                <option key={d} value={d}>
-                  {d}% or more
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-
-        {/* RESULTS */}
-
-        <div className="results-info">
-          <span>
-            Showing {shownProducts.length} of{" "}
-            {sortedProducts.length} products
-          </span>
-
-          {hasFilters && (
-            <button
-              className="clear-filter-btn"
-              onClick={clearFilters}
-            >
-              Clear filters
-            </button>
-          )}
-        </div>
-
-        {/* PRODUCT GRID */}
-
-        <section className="products-grid">
-          {shownProducts.length > 0 ? (
-            shownProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onAddToCart={handleAddToCart}
-              />
-            ))
-          ) : (
-            <div className="empty-products">
-              <h3>No products found</h3>
-
-              <p>Try another search or category.</p>
-
-              <button onClick={clearFilters}>
-                Clear Filters
               </button>
+
             </div>
-          )}
-        </section>
 
-        {/* LOAD MORE */}
+            <div className="products-category-grid">
 
-        {visible < sortedProducts.length && (
-          <div className="load-more-wrap">
+              {uniqueCategoryBoxes.map((category) => {
+
+                const Icon = category.icon;
+
+                return (
+
+                  <button
+                    type="button"
+                    key={category.id}
+                    className="products-category-card"
+                    onClick={() =>
+                      handleCategoryGroupChange(
+                        category.label
+                      )
+                    }
+                    title={category.label}
+                  >
+
+                    <Icon
+                      size={30}
+                      strokeWidth={1.8}
+                    />
+
+                    <span>
+                      {t(category.label)}
+                    </span>
+
+                  </button>
+
+                );
+
+              })}
+
+            </div>
+
+          </section>
+
+        )}
+
+        {/* =================================
+            BACK TO CATEGORIES BUTTON
+        ================================= */}
+
+        {!isCategoryScreen && (
+
+          <div className="products-back-wrapper">
+
             <button
-              className="load-more-btn"
-              onClick={() =>
-                setVisible((v) => v + PAGE_SIZE)
+              type="button"
+              className="products-back-btn"
+              onClick={handleBackToCategories}
+            >
+
+              <ArrowLeft
+                size={21}
+                strokeWidth={2}
+              />
+
+              <span>
+                {t("Back to categories")}
+              </span>
+
+            </button>
+
+          </div>
+
+        )}
+
+        {/* =================================
+            SELECTED CATEGORY PRODUCTS
+        ================================= */}
+
+        <div className="products-list-content">
+
+          <div className="products-mobile-title">
+
+            <h2>
+
+              {isAllSelected
+                ? t("All Products")
+                : `${t(
+                    selectedGroup ||
+                    getCategoryStyle(selectedCategory).label
+                  )} ${t("Products")}`
+              }
+
+            </h2>
+
+          </div>
+
+          {/* SEARCH AND CATEGORY DROPDOWN */}
+
+          <div className="products-toolbar">
+
+            <div className="products-search">
+
+              <Search size={20} />
+
+              <input
+                type="text"
+                placeholder="Search products or categories..."
+                value={search}
+                onChange={(e) =>
+                  setSearch(e.target.value)
+                }
+              />
+
+            </div>
+
+            <select
+              className="products-category-select"
+              value={
+                selectedGroup
+                  ? `group:${selectedGroup}`
+                  : selectedCategory
+              }
+              onChange={(e) =>
+                handleCategoryChange(e.target.value)
               }
             >
-              Load more ({sortedProducts.length - visible} more)
-            </button>
+
+              <option value="All">
+                All Categories
+              </option>
+
+              {selectedGroup && (
+
+                <option value={`group:${selectedGroup}`}>
+                  {selectedGroup} (All matching categories)
+                </option>
+
+              )}
+
+              {categories.map((category) => (
+
+                <option
+                  key={normalizeCategory(category.name)}
+                  value={category.name}
+                >
+                  {category.name}
+                </option>
+
+              ))}
+
+            </select>
+
           </div>
-        )}
+
+          {/* =================================
+              SORT AND FILTERS
+          ================================= */}
+
+          <div className="products-filters">
+
+            <label>
+
+              Sort by
+
+              <select
+                value={sort}
+                onChange={(e) =>
+                  setParam(
+                    "sort",
+                    e.target.value === "recommended"
+                      ? ""
+                      : e.target.value
+                  )
+                }
+              >
+
+                {SORTS.map(([value, label]) => (
+
+                  <option
+                    key={value}
+                    value={value}
+                  >
+                    {label}
+                  </option>
+
+                ))}
+
+              </select>
+
+            </label>
+
+            <label>
+
+              Price
+
+              <select
+                value={priceKey}
+                onChange={(e) =>
+                  setParam("price", e.target.value)
+                }
+              >
+
+                <option value="">
+                  Any price
+                </option>
+
+                {PRICE_RANGES.map((range) => (
+
+                  <option
+                    key={range.key}
+                    value={range.key}
+                  >
+                    {range.label}
+                  </option>
+
+                ))}
+
+              </select>
+
+            </label>
+
+            <label>
+
+              Discount
+
+              <select
+                value={minDisc || ""}
+                onChange={(e) =>
+                  setParam("disc", e.target.value)
+                }
+              >
+
+                <option value="">
+                  Any discount
+                </option>
+
+                {[10, 20, 30, 40].map((discount) => (
+
+                  <option
+                    key={discount}
+                    value={discount}
+                  >
+                    {discount}% or more
+                  </option>
+
+                ))}
+
+              </select>
+
+            </label>
+
+          </div>
+
+          {/* RESULTS INFORMATION */}
+
+          <div className="results-info">
+
+            <span>
+
+              Showing {shownProducts.length} of{" "}
+              {sortedProducts.length} products
+
+            </span>
+
+            {hasFilters && (
+
+              <button
+                className="clear-filter-btn"
+                onClick={clearFilters}
+              >
+                Clear filters
+              </button>
+
+            )}
+
+          </div>
+
+          {/* PRODUCT GRID */}
+
+          <section className="products-grid">
+
+            {shownProducts.length > 0 ? (
+
+              shownProducts.map((product) => (
+
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onAddToCart={handleAddToCart}
+                />
+
+              ))
+
+            ) : (
+
+              <div className="empty-products">
+
+                <h3>No products found</h3>
+
+                <p>
+                  Try another search or category.
+                </p>
+
+                <button onClick={clearFilters}>
+                  Clear Filters
+                </button>
+
+              </div>
+
+            )}
+
+          </section>
+
+          {/* LOAD MORE PRODUCTS */}
+
+          {visible < sortedProducts.length && (
+
+            <div className="load-more-wrap">
+
+              <button
+                className="load-more-btn"
+                onClick={() =>
+                  setVisible((value) => value + PAGE_SIZE)
+                }
+              >
+
+                Load more (
+                {sortedProducts.length - visible}
+                {" "}more)
+
+              </button>
+
+            </div>
+
+          )}
+
+        </div>
+
       </main>
 
       <Footer />
+
     </>
   );
 }

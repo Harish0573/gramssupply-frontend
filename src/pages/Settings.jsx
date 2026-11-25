@@ -47,7 +47,7 @@ function Settings() {
           </section>
           <section className="st-card">
             <h2><Bell size={22} /> {t("Notifications")}</h2>
-            <Toggle k="offers" label="Offers & sale alerts" hint="Diwali deals, coupons and new arrivals" />
+            <Toggle k="offers" label="Offers & sale alerts" hint="Deals, coupons and new arrivals" />
             <Toggle k="orderUpdates" label="Order updates" hint="Confirmation, shipping and delivery" />
           </section>
           <section className="st-card">
